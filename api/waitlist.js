@@ -71,8 +71,12 @@ export default async function handler(req, res) {
         <p style="font-size: 14px; color: #666;">We'll be in touch shortly with your unique access credentials.</p>
         <p style="font-size: 14px; font-weight: bold; margin-top: 32px;">— The Passr Team</p>
         <hr style="border: none; border-top: 1px solid #EEE; margin: 32px 0;" />
-        <p style="font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 0.1em;">
+        <!-- TODO: Uncomment when Hisako Technologies OÜ is registered -->
+        <!-- <p style="font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 0.1em;">
           Passr — Hisako Technologies OÜ // Tallinn, Estonia
+        </p> -->
+        <p style="font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 0.1em;">
+          Passr.eu
         </p>
       </div>
     `,
