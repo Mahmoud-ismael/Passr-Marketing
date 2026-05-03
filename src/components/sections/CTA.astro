@@ -68,7 +68,13 @@ import SectionLabel from '../shared/SectionLabel.astro';
         body: JSON.stringify({ email }),
       });
 
-      const result = await response.json();
+      let result;
+      const text = await response.text();
+      try {
+        result = JSON.parse(text);
+      } catch (e) {
+        result = { error: text || 'SERVER ERROR: NO DATA' };
+      }
 
       if (response.ok) {
         const container = document.getElementById('cta-form-container');
@@ -80,12 +86,12 @@ import SectionLabel from '../shared/SectionLabel.astro';
           `;
         }
       } else {
-        message.textContent = result.error || 'ERROR: FAILED TO JOIN';
+        message.textContent = `ERROR: ${result.error || 'FAILED TO JOIN'}`;
         message.className = 'mt-4 font-mono text-xs uppercase tracking-widest text-signal';
         button.disabled = false;
       }
-    } catch (error) {
-      message.textContent = 'ERROR: CONNECTION FAILED';
+    } catch (error: any) {
+      message.textContent = `ERROR: ${error.message || 'CONNECTION FAILED'}`;
       message.className = 'mt-4 font-mono text-xs uppercase tracking-widest text-signal';
       button.disabled = false;
     }
