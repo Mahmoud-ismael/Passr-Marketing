@@ -31,8 +31,6 @@
 - [ ] Domain email (hello@passr.eu) configured and receiving
 - [ ] SPF/DKIM/DMARC DNS records configured for Resend
 - [ ] Vercel production environment variables set:
-  - `SUPABASE_URL`
-  - `SUPABASE_SERVICE_ROLE_KEY`
   - `RESEND_API_KEY`
   - `WAITLIST_FROM_EMAIL`
   - `PUBLIC_PLAUSIBLE_DOMAIN`

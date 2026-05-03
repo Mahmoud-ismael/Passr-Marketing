@@ -18,7 +18,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const { email } = result.data;
-    const resend = new Resend(import.meta.env.RESEND_API_KEY);
+    const resend = new Resend(import.meta.env.PASSR_MARKETING);
     const AUDIENCE_ID = '09709375-1a04-4d34-ac6f-1d774df85bd3';
 
     // 1. Add to Resend Audience
