@@ -1,5 +1,0 @@
-import"./hoisted.hk68qlNe.js";import"./hoisted.BLblh2xX.js";const o=document.getElementById("waitlist-form"),t=document.getElementById("form-message"),e=o?.querySelector("button");o?.addEventListener("submit",async a=>{if(a.preventDefault(),!e||!t)return;const r=new FormData(o).get("email");e.disabled=!0,t.textContent="TRANSMITTING...",t.className="mt-4 font-mono text-xs uppercase tracking-widest text-metal";try{const n=await fetch("/api/waitlist",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:r})}),i=await n.json();if(n.ok){const s=document.getElementById("cta-form-container");s&&(s.innerHTML=`
-            <div class="py-4 font-mono text-sm text-verified uppercase tracking-[0.2em] border border-verified/30 bg-verified/5">
-              ACCESS REQUESTED — WE'LL BE IN TOUCH.
-            </div>
-          `)}else t.textContent=i.error||"ERROR: FAILED TO JOIN",t.className="mt-4 font-mono text-xs uppercase tracking-widest text-signal",e.disabled=!1}catch{t.textContent="ERROR: CONNECTION FAILED",t.className="mt-4 font-mono text-xs uppercase tracking-widest text-signal",e.disabled=!1}});
