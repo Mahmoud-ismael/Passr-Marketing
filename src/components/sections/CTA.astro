@@ -91,7 +91,8 @@ import SectionLabel from '../shared/SectionLabel.astro';
         button.disabled = false;
       }
     } catch (error: any) {
-      message.textContent = `ERROR: ${error.message || 'CONNECTION FAILED'}`;
+      console.error('Waitlist Fetch Error:', error);
+      message.textContent = `ERROR: ${error.name || 'FETCH ERROR'} - ${error.message || 'CONNECTION FAILED'}`;
       message.className = 'mt-4 font-mono text-xs uppercase tracking-widest text-signal';
       button.disabled = false;
     }
