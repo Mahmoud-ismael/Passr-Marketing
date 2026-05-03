@@ -1,0 +1,109 @@
+---
+import SectionLabel from '../shared/SectionLabel.astro';
+import { CheckCircle } from '@lucide/astro';
+
+const bullets = [
+  'Your brand logo. Not ours.',
+  'Verified PFAS-Free badge linked to the actual lab report PDF.',
+  'Material composition, factory origins, wash instructions.',
+  'Password-protected recycler disassembly access.',
+];
+---
+
+<section class="bg-void py-[120px]">
+  <div class="container mx-auto px-6 max-w-[1200px]">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      
+      <!-- LEFT COLUMN -->
+      <div class="flex flex-col gap-8">
+        <SectionLabel label="THE PUBLIC PASSPORT" />
+        
+        <h2 class="font-display font-bold text-4xl text-white tracking-tight uppercase leading-[1.1]">
+          What your customers see when they scan the QR code.
+        </h2>
+
+        <div class="space-y-4">
+          {bullets.map((bullet) => (
+            <div class="flex items-start gap-3">
+              <CheckCircle size={16} class="text-verified mt-0.5 shrink-0" />
+              <p class="font-mono text-sm text-metal uppercase tracking-wider leading-relaxed">
+                {bullet}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: MOBILE MOCKUP -->
+      <div class="flex justify-center lg:justify-end">
+        <div class="relative w-[300px] h-[600px] border-4 border-border-strong rounded-[32px] bg-void shadow-2xl animate-float p-3">
+          <!-- Inner Screen -->
+          <div class="w-full h-full bg-white rounded-[24px] overflow-hidden flex flex-col text-[var(--text-inverse)] font-sans">
+            <!-- Brand Logo Placeholder -->
+            <div class="h-20 bg-surface-light-0 flex items-center justify-center border-b border-border-default">
+              <span class="font-mono text-[10px] text-metal uppercase tracking-widest">BRAND LOGO</span>
+            </div>
+
+            <!-- Content Area -->
+            <div class="flex-1 p-6 space-y-6">
+              <h3 class="font-display font-bold text-lg text-void uppercase tracking-tight">
+                ALPINE SHELL V2.0
+              </h3>
+
+              <!-- Verified Banner -->
+              <div class="bg-verified py-2 px-3 text-white font-display font-bold text-xs uppercase tracking-widest flex items-center gap-2">
+                <span>✓</span> VERIFIED PFAS-FREE
+              </div>
+
+              <!-- Tabs -->
+              <div class="flex justify-between border-b border-border-default pb-2">
+                <span class="font-display font-bold text-[10px] text-void tracking-widest uppercase border-b-2 border-void">OVERVIEW</span>
+                <span class="font-display font-bold text-[10px] text-metal tracking-widest uppercase">COMPLIANCE</span>
+                <span class="font-display font-bold text-[10px] text-metal tracking-widest uppercase">CARE</span>
+              </div>
+
+              <!-- Material Table -->
+              <div class="space-y-2">
+                <div class="flex justify-between font-mono text-[10px] border-b border-border-default py-1">
+                  <span class="text-metal">RECYCLED NYLON</span>
+                  <span class="text-void font-bold">80%</span>
+                </div>
+                <div class="flex justify-between font-mono text-[10px] border-b border-border-default py-1">
+                  <span class="text-metal">ELASTANE</span>
+                  <span class="text-void font-bold">20%</span>
+                </div>
+              </div>
+
+              <!-- Data Density (Visual Texture) -->
+              <div class="space-y-1 opacity-40">
+                <div class="h-2 bg-surface-light-2 w-full"></div>
+                <div class="h-2 bg-surface-light-2 w-3/4"></div>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="p-4 bg-surface-light-0 border-t border-border-default text-center">
+              <p class="font-mono text-[8px] text-metal uppercase tracking-widest">
+                Digital Passport secured by PASSR
+              </p>
+            </div>
+          </div>
+
+          <!-- Camera Notch -->
+          <div class="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-4 bg-void rounded-full"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes float {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-12px); }
+  }
+  .animate-float {
+    animation: float 3s ease-in-out infinite alternate;
+  }
+</style>

@@ -1,0 +1,70 @@
+---
+import SectionLabel from '../shared/SectionLabel.astro';
+import { 
+  FlaskConical, 
+  QrCode, 
+  Layers, 
+  MapPin, 
+  ShieldCheck, 
+  Archive 
+} from '@lucide/astro';
+
+const features = [
+  {
+    icon: FlaskConical,
+    title: 'PFAS COMPLIANCE ENGINE',
+    body: 'Structured chemical safety data with lab report storage. PFAS toggle logic with Severe Wet Weather exemption support. Expiry tracking with automated alerts.',
+  },
+  {
+    icon: QrCode,
+    title: 'GS1 DIGITAL LINK GENERATOR',
+    body: 'Generates compliant GS1 Digital Link URLs (https://verify.passr.eu/01/{GTIN}). Batch export ZIP of SVG/PNG files ready for packaging designers.',
+  },
+  {
+    icon: Layers,
+    title: 'MATERIAL COMPOSITION TREE',
+    body: 'Structured input for fibre type, percentage, and origin. Validates total to 100%. Displayed on consumer-facing passport automatically.',
+  },
+  {
+    icon: MapPin,
+    title: 'SUPPLY CHAIN ORIGIN MAPPER',
+    body: 'Document fabric mill, assembly factory, and warehouse locations. Satisfies EU ESPR origin traceability requirements.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'WHITE-LABEL PUBLIC PASSPORT',
+    body: 'Consumer-facing passport shows your brand logo. Passr branding is footer-only. GS1 QR code links to live, updatable data.',
+  },
+  {
+    icon: Archive,
+    title: 'LEGAL DATA ESCROW',
+    body: 'One-click bulk download of all certificates and compliance records. Your data leaves with you if you cancel. No lock-in.',
+  },
+];
+---
+
+<section class="bg-surface-1 py-[120px] border-y border-border-default">
+  <div class="container mx-auto px-6 max-w-[1200px]">
+    <div class="mb-20">
+      <SectionLabel label="PLATFORM FEATURES" class="mb-8" />
+      <h2 class="font-display font-bold text-4xl text-white tracking-tight uppercase leading-[1.1]">
+        Built for outdoor brands.<br />
+        Built to the GS1 standard.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {features.map((feature) => (
+        <div class="bg-surface-2 border border-border-default p-8 flex flex-col items-start">
+          <feature.icon size={20} class="text-metal" />
+          <h3 class="font-display font-semibold text-lg text-white mt-4 mb-3 uppercase tracking-tight">
+            {feature.title}
+          </h3>
+          <p class="font-mono text-sm text-metal leading-relaxed uppercase tracking-wider">
+            {feature.body}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

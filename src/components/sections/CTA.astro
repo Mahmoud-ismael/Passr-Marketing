@@ -1,0 +1,93 @@
+---
+import SectionLabel from '../shared/SectionLabel.astro';
+---
+
+<section id="waitlist" class="bg-surface-1 py-[120px] border-t border-signal">
+  <div class="container mx-auto px-6 max-w-[680px] text-center">
+    <SectionLabel label="EARLY ACCESS" class="justify-center border-l-0 border-b border-metal inline-block pb-2 px-6" />
+    
+    <h2 class="font-display font-bold text-4xl text-white tracking-tight uppercase mt-12 mb-6 leading-tight">
+      The 2028 deadline is fixed.<br />
+      Your preparation window is not.
+    </h2>
+
+    <p class="font-mono text-base text-metal uppercase tracking-wider mb-12">
+      Join outdoor brands already building their DPP infrastructure.<br class="hidden md:block" />
+      Setup takes under 30 minutes.
+    </p>
+
+    <div id="cta-form-container">
+      <form id="waitlist-form" class="flex flex-col md:flex-row gap-0">
+        <input 
+          type="email" 
+          name="email"
+          required 
+          placeholder="brand@yourcompany.com" 
+          class="flex-1 h-12 bg-surface-3 border border-border-default px-4 font-mono text-sm text-white placeholder:text-metal focus:outline-none focus:border-metal transition-colors"
+        />
+        <button 
+          type="submit" 
+          class="h-12 bg-signal text-white font-display font-semibold uppercase tracking-widest px-8 hover:bg-[#E0342A] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          REQUEST ACCESS
+        </button>
+      </form>
+      <p id="form-message" class="mt-4 font-mono text-xs uppercase tracking-widest min-h-[16px]"></p>
+    </div>
+
+    <div class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 opacity-50">
+      <div class="font-mono text-[10px] text-metal uppercase tracking-widest">No credit card required</div>
+      <div class="hidden md:block text-metal opacity-30">·</div>
+      <div class="font-mono text-[10px] text-metal uppercase tracking-widest">EU data residency</div>
+      <div class="hidden md:block text-metal opacity-30">·</div>
+      <div class="font-mono text-[10px] text-metal uppercase tracking-widest">Cancel anytime</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('waitlist-form') as HTMLFormElement;
+  const message = document.getElementById('form-message');
+  const button = form?.querySelector('button');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!button || !message) return;
+
+    const formData = new FormData(form);
+    const email = formData.get('email');
+
+    button.disabled = true;
+    message.textContent = 'TRANSMITTING...';
+    message.className = 'mt-4 font-mono text-xs uppercase tracking-widest text-metal';
+
+    try {
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        const container = document.getElementById('cta-form-container');
+        if (container) {
+          container.innerHTML = `
+            <div class="py-4 font-mono text-sm text-verified uppercase tracking-[0.2em] border border-verified/30 bg-verified/5">
+              ACCESS REQUESTED — WE'LL BE IN TOUCH.
+            </div>
+          `;
+        }
+      } else {
+        message.textContent = result.error || 'ERROR: FAILED TO JOIN';
+        message.className = 'mt-4 font-mono text-xs uppercase tracking-widest text-signal';
+        button.disabled = false;
+      }
+    } catch (error) {
+      message.textContent = 'ERROR: CONNECTION FAILED';
+      message.className = 'mt-4 font-mono text-xs uppercase tracking-widest text-signal';
+      button.disabled = false;
+    }
+  });
+</script>

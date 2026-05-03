@@ -1,0 +1,115 @@
+---
+import SectionLabel from '../shared/SectionLabel.astro';
+import Button from '../shared/Button.astro';
+import { AlertTriangle } from '@lucide/astro';
+
+const timeline = [
+  {
+    date: 'July 2024',
+    status: 'verified',
+    label: 'ESPR REGULATION ENTERED INTO FORCE',
+    body: 'EU 2024/1781. Digital Product Passports are now EU law, not proposal.',
+  },
+  {
+    date: 'January 2025',
+    status: 'verified',
+    label: 'TEXTILE DELEGATED ACT FINALIZED',
+    body: 'Data requirements confirmed. No further regulatory uncertainty. Implementation should have started.',
+  },
+  {
+    date: 'January 2026',
+    status: 'verified',
+    label: 'BATTERY DPP ENFORCEMENT LIVE',
+    body: 'Proof the enforcement mechanism works. Market surveillance actively checking at EU borders.',
+  },
+  {
+    date: 'September 2026',
+    status: 'warning',
+    label: 'GREEN CLAIMS DIRECTIVE TAKES EFFECT',
+    body: 'Unverified sustainability claims banned. DPP data becomes legal defence against greenwashing enforcement.',
+  },
+  {
+    date: 'Late 2026 / Q1 2027',
+    status: 'warning',
+    pulse: true,
+    label: 'TEXTILE DELEGATED ACT ADOPTION',
+    body: 'The 18-month implementation clock starts here. Brands that are not ready will scramble.',
+  },
+  {
+    date: 'Mid 2028',
+    status: 'signal',
+    large: true,
+    label: 'MANDATORY DPP ENFORCEMENT — TEXTILES',
+    body: 'Every outdoor brand selling in the EU requires a compliant Digital Product Passport. Non-compliant products blocked at import.',
+  },
+];
+---
+
+<section class="bg-void py-[120px] border-t border-border-strong">
+  <div class="container mx-auto px-6 max-w-[1200px]">
+    <div class="mb-20">
+      <SectionLabel label="EU REGULATORY TIMELINE" class="mb-8" />
+      <h2 class="font-display font-bold text-4xl text-white tracking-tight uppercase leading-[1.1]">
+        The deadline is confirmed.<br />
+        No extensions have been granted.
+      </h2>
+    </div>
+
+    <!-- Vertical Timeline -->
+    <div class="relative ml-4 md:ml-0 md:pl-0">
+      <!-- Vertical Line -->
+      <div class="absolute left-0 md:left-4 top-2 bottom-2 w-px bg-border-strong"></div>
+
+      <div class="space-y-16">
+        {timeline.map((item) => (
+          <div class="relative pl-10 md:pl-16">
+            <!-- Dot -->
+            <div class:list={[
+              "absolute left-[-4px] md:left-[12px] top-1.5 rounded-full z-10",
+              item.status === 'verified' && "bg-verified w-2 h-2",
+              item.status === 'warning' && "bg-warning w-2 h-2",
+              item.status === 'signal' && "bg-signal",
+              item.large ? "w-3 h-3 left-[-6px] md:left-[10px]" : "w-2 h-2",
+              item.pulse && "animate-pulse-ring"
+            ]}></div>
+
+            <div class="flex flex-col gap-2">
+              <span class="font-mono text-xs text-metal uppercase tracking-widest">{item.date}</span>
+              <h3 class="font-display font-bold text-lg text-white uppercase tracking-tight">{item.label}</h3>
+              <p class="font-mono text-sm text-metal uppercase tracking-wider leading-relaxed max-w-2xl">
+                {item.body}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Callout Card -->
+    <div class="mt-32 bg-surface-1 border-l-4 border-l-signal p-8 md:p-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="flex items-start gap-6">
+        <AlertTriangle size={24} class="text-signal shrink-0 mt-1" />
+        <p class="font-display font-semibold text-lg md:text-xl text-white leading-snug max-w-2xl">
+          Brands piloting now will have a validated system before enforcement.
+          <span class="block text-metal mt-2 text-base font-normal">
+            Brands waiting will be scrambling during the same 18-month window as every competitor.
+          </span>
+        </p>
+      </div>
+      <Button variant="primary" size="lg" href="/get-started" class="shrink-0">
+        START YOUR PILOT →
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes pulse-ring {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+  }
+  .animate-pulse-ring {
+    animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+  }
+</style>

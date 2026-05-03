@@ -1,0 +1,57 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	ogImage?: string;
+	canonicalUrl?: string;
+}
+
+const { 
+	title, 
+	description, 
+	ogImage = '/og-image.png', 
+	canonicalUrl = Astro.url.href 
+} = Astro.props;
+
+import '../styles/globals.css';
+import CookieBanner from '../components/shared/CookieBanner.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- SEO -->
+		<title>{title} — Passr</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalUrl} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url.href} />
+		<meta property="og:title" content={`${title} — Passr`} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(ogImage, Astro.site)} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url.href} />
+		<meta property="twitter:title" content={`${title} — Passr`} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+		<!-- Performance -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="dns-prefetch" href="https://plausible.io">
+		<link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" as="style">
+	</head>
+	<body>
+		<slot />
+		<CookieBanner />
+	</body>
+</html>

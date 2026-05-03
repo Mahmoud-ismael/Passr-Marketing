@@ -1,0 +1,105 @@
+---
+import SectionLabel from '../shared/SectionLabel.astro';
+import { Shield, QrCode, CheckSquare } from '@lucide/astro';
+
+const solutions = [
+  {
+    icon: Shield,
+    title: 'COMPLIANCE LOCKER',
+    body: 'Structured storage for PFAS reports, lab certs, and material data. Never lose a document.',
+  },
+  {
+    icon: QrCode,
+    title: 'GS1 DIGITAL PASSPORTS',
+    body: 'Print once. Update forever. GS1-compliant QR codes linked to live compliance data.',
+  },
+  {
+    icon: CheckSquare,
+    title: 'AUTOMATED COMPLIANCE TRACKING',
+    body: 'Traffic-light dashboard flags missing data before customs does.',
+  },
+];
+---
+
+<section class="bg-void py-[120px]">
+  <div class="container mx-auto px-6 max-w-[1200px]">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32">
+      
+      <!-- LEFT SIDE: THE PROBLEM -->
+      <div class="flex flex-col gap-8">
+        <SectionLabel label="THE CURRENT STATE" />
+        
+        <h2 class="font-display font-bold text-3xl text-white tracking-tight uppercase leading-[1.1]">
+          Your compliance data lives in a Dropbox folder.
+        </h2>
+
+        <!-- File Tree Visualization -->
+        <div class="bg-surface-1 border border-border-default p-6 font-mono text-sm">
+          <div class="text-metal mb-2 uppercase tracking-widest text-[10px]">BRAND_COMPLIANCE/</div>
+          <div class="space-y-1">
+            <div>├── PFAS_Reports/</div>
+            <div class="pl-4">│   ├── mens_jacket_v2_FINAL.pdf</div>
+            <div class="pl-4 text-signal">│   ├── mens_jacket_v2_FINAL_updated.pdf</div>
+            <div class="pl-4 text-signal">│   ├── mens_jacket_v2_FINAL_updated2.pdf</div>
+            <div class="pl-4 text-signal flex items-center gap-1">
+              │   └── [MISSING - SKU-4421].pdf
+              <span class="w-1.5 h-3.5 bg-signal animate-blink"></span>
+            </div>
+            <div>├── Origins/</div>
+            <div class="pl-4 text-signal">│   └── supplier_info_2023.xlsx</div>
+            <div>└── QR_Codes/</div>
+            <div class="pl-4 text-signal">└── [NONE - NOT GENERATED]</div>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <p class="font-mono text-sm text-metal uppercase tracking-wider flex gap-3">
+            <span class="text-signal">×</span> Customs asks for a PFAS report. You can't find it.
+          </p>
+          <p class="font-mono text-sm text-metal uppercase tracking-wider flex gap-3">
+            <span class="text-signal">×</span> Retail buyer requests DPP link. You don't have one.
+          </p>
+          <p class="font-mono text-sm text-metal uppercase tracking-wider flex gap-3">
+            <span class="text-signal">×</span> 2028 deadline approaches. Your team has no system.
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE: THE SOLUTION -->
+      <div class="flex flex-col gap-8">
+        <SectionLabel label="WITH PASSR" />
+        
+        <h2 class="font-display font-bold text-3xl text-white tracking-tight uppercase leading-[1.1]">
+          One URL. Every certificate. Always current.
+        </h2>
+
+        <div class="flex flex-col gap-4">
+          {solutions.map((solution) => (
+            <div class="bg-surface-1 border border-border-default border-l-[3px] border-l-verified p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <solution.icon size={20} class="text-verified" />
+                <h3 class="font-display font-semibold text-white uppercase tracking-widest text-sm">
+                  {solution.title}
+                </h3>
+              </div>
+              <p class="font-mono text-sm text-metal uppercase tracking-wider leading-relaxed">
+                {solution.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+</style>

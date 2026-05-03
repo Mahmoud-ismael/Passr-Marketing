@@ -1,0 +1,42 @@
+---
+interface Props {
+  label: string;
+  variant?: 'outline' | 'solid';
+  color?: 'signal' | 'verified' | 'warning' | 'metal';
+  class?: string;
+}
+
+const { 
+  label, 
+  variant = 'outline', 
+  color = 'metal',
+  class: className 
+} = Astro.props;
+
+const colors = {
+  signal: {
+    outline: 'border-signal text-signal',
+    solid: 'bg-signal text-white',
+  },
+  verified: {
+    outline: 'border-verified text-verified',
+    solid: 'bg-verified text-white',
+  },
+  warning: {
+    outline: 'border-warning text-warning',
+    solid: 'bg-warning text-white',
+  },
+  metal: {
+    outline: 'border-metal text-metal',
+    solid: 'bg-metal text-white',
+  },
+};
+
+const baseStyles = 'inline-flex items-center justify-center px-2 py-0.5 rounded-sm font-mono text-[10px] font-medium uppercase tracking-wider border transition-colors';
+const variantStyles = variant === 'outline' ? colors[color].outline : colors[color].solid;
+const borderStyle = variant === 'solid' ? 'border-transparent' : '';
+---
+
+<span class:list={[baseStyles, variantStyles, borderStyle, className]}>
+  {label}
+</span>

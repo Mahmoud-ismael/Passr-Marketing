@@ -1,0 +1,56 @@
+---
+import Button from './Button.astro';
+---
+
+<div id="cookie-banner" class="hidden fixed bottom-0 left-0 right-0 bg-surface-1 border-t border-signal z-[100] py-5 px-8">
+  <div class="container mx-auto max-w-[1200px] flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex-1">
+      <p class="font-mono text-xs text-metal uppercase tracking-wider leading-relaxed">
+        This site uses cookies for authentication (required) and analytics (optional). 
+        See our <a href="/legal/cookies" class="text-white hover:text-signal transition-colors underline">Cookie Policy</a>.
+      </p>
+    </div>
+    <div class="flex gap-4 w-full md:w-auto">
+      <Button variant="secondary" size="sm" id="cookie-necessary" class="flex-1 md:flex-none">NECESSARY ONLY</Button>
+      <Button variant="primary" size="sm" id="cookie-accept" class="flex-1 md:flex-none">ACCEPT ALL</Button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('cookie-accept');
+  const necessaryBtn = document.getElementById('cookie-necessary');
+
+  const CONSENT_KEY = 'passr_cookie_consent';
+
+  function initializePlausible() {
+    // Only load if not already loaded and consent is 'all'
+    if (window.location.hostname !== 'localhost' && !document.querySelector('script[data-domain]')) {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.dataset.domain = "passr.eu";
+      script.src = "https://plausible.io/js/script.js";
+      document.head.appendChild(script);
+    }
+  }
+
+  function handleConsent(type: 'all' | 'necessary') {
+    localStorage.setItem(CONSENT_KEY, type);
+    banner?.classList.add('hidden');
+    if (type === 'all') {
+      initializePlausible();
+    }
+  }
+
+  // Check initial state
+  const consent = localStorage.getItem(CONSENT_KEY);
+  if (!consent) {
+    banner?.classList.remove('hidden');
+  } else if (consent === 'all') {
+    initializePlausible();
+  }
+
+  acceptBtn?.addEventListener('click', () => handleConsent('all'));
+  necessaryBtn?.addEventListener('click', () => handleConsent('necessary'));
+</script>

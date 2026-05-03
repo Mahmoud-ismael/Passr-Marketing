@@ -1,0 +1,107 @@
+body.legal-page {
+  background: var(--surface-light-0);
+  color: var(--text-inverse);
+  -webkit-font-smoothing: antialiased;
+}
+
+.legal-content h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-3xl);
+  color: var(--color-void);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-8);
+}
+
+.legal-content h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-xl);
+  color: var(--color-void);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-top: 48px;
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 4px;
+}
+
+.legal-content h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-lg);
+  color: var(--color-void);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-top: 32px;
+  margin-bottom: var(--space-3);
+}
+
+.legal-content p, 
+.legal-content li {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: #333333;
+  line-height: 1.8;
+  margin-bottom: var(--space-6);
+}
+
+.legal-content ul, 
+.legal-content ol {
+  margin-bottom: var(--space-6);
+  padding-left: var(--space-6);
+}
+
+.legal-content a {
+  color: var(--color-signal);
+  text-decoration: none;
+  transition: text-decoration 100ms;
+}
+
+.legal-content a:hover {
+  text-decoration: underline;
+}
+
+.legal-content strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-void);
+}
+
+.legal-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-8);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.legal-content th, 
+.legal-content td {
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 12px;
+  text-align: left;
+}
+
+.legal-content th {
+  font-family: var(--font-display);
+  font-weight: 600;
+  background: var(--surface-light-2);
+  color: var(--color-void);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.legal-meta-bar {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-metal);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-bottom: 12px;
+  margin-bottom: 48px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}

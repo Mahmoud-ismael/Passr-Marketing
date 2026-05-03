@@ -1,0 +1,15 @@
+---
+interface Props {
+  variant?: 'default' | 'accent';
+  class?: string;
+}
+
+const { variant = 'default', class: className } = Astro.props;
+
+const styles = {
+  default: 'h-px bg-border-default',
+  accent: 'h-0.5 bg-signal',
+};
+---
+
+<div class:list={[styles[variant], className]} role="separator"></div>

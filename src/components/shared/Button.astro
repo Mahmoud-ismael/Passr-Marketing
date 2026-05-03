@@ -1,0 +1,45 @@
+---
+import { ExternalLink } from '@lucide/astro';
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  href?: string;
+  size?: 'sm' | 'md' | 'lg';
+  external?: boolean;
+  class?: string;
+}
+
+const { 
+  variant = 'primary', 
+  href, 
+  size = 'md', 
+  external = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const variants = {
+  primary: 'bg-signal text-white hover:bg-[#E0342A]',
+  secondary: 'bg-transparent border border-metal text-white hover:border-white hover:bg-surface-3',
+  ghost: 'bg-transparent text-metal hover:text-white',
+};
+
+const sizes = {
+  sm: 'px-4 py-2 text-xs',
+  md: 'px-6 py-3 text-sm',
+  lg: 'px-8 py-4 text-base',
+};
+
+const baseStyles = 'inline-flex items-center justify-center gap-2 font-display font-semibold uppercase tracking-widest rounded-sm transition-colors duration-100 no-underline';
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  href={href}
+  class:list={[baseStyles, variants[variant], sizes[size], className]}
+  {...(href && external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+  {...rest}
+>
+  <slot />
+  {external && <ExternalLink size={12} />}
+</Tag>

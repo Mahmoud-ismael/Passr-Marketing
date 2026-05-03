@@ -1,0 +1,75 @@
+---
+import { Menu, X } from '@lucide/astro';
+import Button from '../shared/Button.astro';
+
+const navLinks = [
+  { label: 'Product', href: '/product' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Docs', href: '/docs' },
+];
+---
+
+<header class="fixed top-0 left-0 w-full h-16 bg-void border-b border-border-default z-50">
+  <div class="container mx-auto px-6 h-full flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="relative inline-flex items-center group">
+      <span class="font-display font-bold text-xl tracking-tighter text-white uppercase">PASSR</span>
+      <div class="absolute -top-1 -right-2 w-1.5 h-1.5 bg-signal rounded-full"></div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-8">
+      {navLinks.map(link => (
+        <a href={link.href} class="font-display font-medium text-sm text-metal hover:text-white transition-colors uppercase tracking-wider">
+          {link.label}
+        </a>
+      ))}
+      <div class="w-px h-4 bg-border-default"></div>
+      <Button variant="ghost" size="sm" href="/signin">Sign In</Button>
+      <Button variant="primary" size="sm" href="#waitlist">Get Started</Button>
+    </nav>
+
+    <!-- Mobile Menu Toggle -->
+    <button id="menu-toggle" class="md:hidden text-white p-2" aria-label="Toggle menu">
+      <Menu id="menu-icon" class="block" />
+      <X id="close-icon" class="hidden" />
+    </button>
+  </div>
+
+  <!-- Mobile Nav Drawer -->
+  <div id="mobile-nav" class="hidden absolute top-16 left-0 w-full bg-surface-1 border-b border-border-default md:hidden animate-in slide-in-from-top duration-200">
+    <nav class="flex flex-col p-6 gap-6">
+      {navLinks.map(link => (
+        <a href={link.href} class="font-display font-medium text-lg text-metal hover:text-white transition-colors uppercase tracking-widest">
+          {link.label}
+        </a>
+      ))}
+      <div class="h-px bg-border-default w-full"></div>
+      <div class="flex flex-col gap-4">
+        <Button variant="ghost" href="/signin" class="justify-start px-0">Sign In</Button>
+        <Button variant="primary" href="#waitlist">Get Started</Button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('mobile-nav');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = !nav?.classList.contains('hidden');
+    
+    if (isOpen) {
+      nav?.classList.add('hidden');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    } else {
+      nav?.classList.remove('hidden');
+      menuIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+    }
+  });
+</script>

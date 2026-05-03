@@ -1,0 +1,40 @@
+---
+const stats = [
+  {
+    value: '2027',
+    label: 'EU ENFORCEMENT DEADLINE',
+  },
+  {
+    value: '€500K',
+    label: 'MAXIMUM GDPR FINE',
+  },
+  {
+    value: '18 MONTHS',
+    label: 'IMPLEMENTATION WINDOW',
+  },
+  {
+    value: '0 GRACE',
+    label: 'EXTENSIONS GRANTED',
+  },
+];
+---
+
+<section class="w-full bg-surface-1 border-y border-border-default">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 min-h-[96px]">
+      {stats.map((stat, index) => (
+        <div class:list={[
+          "flex flex-col items-center justify-center py-8 md:py-0",
+          index !== stats.length - 1 ? "md:border-r border-border-default" : ""
+        ]}>
+          <span class="font-display font-bold text-3xl text-white tracking-tight uppercase">
+            {stat.value}
+          </span>
+          <span class="font-mono text-[10px] text-metal uppercase tracking-[0.15em] mt-1">
+            {stat.label}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

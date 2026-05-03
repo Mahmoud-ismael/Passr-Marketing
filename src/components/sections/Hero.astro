@@ -1,0 +1,185 @@
+---
+import Button from '../shared/Button.astro';
+import SectionLabel from '../shared/SectionLabel.astro';
+import Badge from '../shared/Badge.astro';
+---
+
+<section class="relative min-h-screen flex flex-col bg-void overflow-hidden">
+  <!-- Subtle Grid Overlay -->
+  <div class="absolute inset-0 z-0 pointer-events-none opacity-20" 
+       style="background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 40px 40px;">
+  </div>
+
+  <!-- Hero Top Banner (below Nav) -->
+  <div class="relative z-10 w-full h-9 bg-surface-3 border-b border-border-default mt-16 flex items-center">
+    <div class="container mx-auto px-6 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-1.5 h-1.5 bg-signal rounded-full animate-blink"></div>
+        <span class="font-mono text-[10px] text-white uppercase tracking-widest">
+          EU ESPR TEXTILE DEADLINE: 2028 — BRANDS SELLING IN EU MUST COMPLY
+        </span>
+      </div>
+      <a href="/requirements" class="font-mono text-[10px] text-signal uppercase tracking-widest hover:underline">
+        SEE REQUIREMENTS →
+      </a>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="relative z-10 flex-1 flex items-center py-20">
+    <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-10 gap-16 items-center">
+      
+      <!-- LEFT COLUMN (60%) -->
+      <div class="lg:col-span-6 flex flex-col gap-10">
+        <SectionLabel label="DIGITAL PRODUCT PASSPORT INFRASTRUCTURE" />
+        
+        <div class="flex flex-col">
+          <h1 class="font-display font-bold text-[64px] leading-[1.0] tracking-[-0.02em] text-white uppercase animate-fade-in stagger-1">
+            COMPLIANCE
+          </h1>
+          <h1 class="font-display font-bold text-[64px] leading-[1.0] tracking-[-0.02em] text-white uppercase animate-fade-in stagger-2">
+            VERIFIED<span class="text-signal">.</span>
+          </h1>
+          <h1 class="font-display font-bold text-[64px] leading-[1.0] tracking-[-0.02em] text-white uppercase ml-8 animate-fade-in stagger-3">
+            SUPPLY CHAIN
+          </h1>
+        </div>
+
+        <p class="font-display text-2xl text-metal max-w-[480px] leading-snug">
+          Digital product passports for outdoor and activewear brands. 
+          EU ESPR compliant. GS1 certified. Live in days, not months.
+        </p>
+
+        <div class="flex flex-col gap-4 mt-4">
+          <div class="flex flex-wrap items-center gap-6">
+            <Button size="lg" href="/get-started">START FREE TRIAL</Button>
+            <Button variant="ghost" size="lg" href="/demo">VIEW DEMO PASSPORT →</Button>
+          </div>
+          <p class="font-mono text-[10px] text-metal uppercase tracking-widest">
+            No credit card required. Setup in under 30 minutes.
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN (40%) -->
+      <div class="lg:col-span-4 flex flex-col gap-6">
+        <!-- COMPLIANCE TERMINAL CARD -->
+        <div class="relative bg-surface-1 border border-border-strong rounded-none overflow-hidden group">
+          <!-- Scanline Animation -->
+          <div class="absolute inset-0 z-20 pointer-events-none h-px bg-white/10 animate-scan"></div>
+          
+          <!-- Terminal Header -->
+          <div class="h-8 bg-surface-3 border-b border-border-default flex items-center justify-between px-4">
+            <span class="font-mono text-[10px] text-metal uppercase tracking-widest">PASSR COMPLIANCE TERMINAL v2.1</span>
+            <div class="flex gap-1.5">
+              <div class="w-1.5 h-1.5 bg-metal rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-warning rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-verified rounded-full"></div>
+            </div>
+          </div>
+
+          <!-- Terminal Content -->
+          <div class="p-6 font-mono text-sm space-y-6 text-metal">
+            <div class="space-y-1">
+              <div class="flex justify-between">
+                <span>BRAND:</span>
+                <span class="text-white">PEAK PERFORMANCE EU</span>
+              </div>
+              <div class="flex justify-between">
+                <span>SKU COUNT:</span>
+                <span class="text-white">247</span>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <div class="flex justify-between items-end">
+                <span>COMPLIANCE STATUS:</span>
+                <span class="text-white font-bold">94%</span>
+              </div>
+              <div class="h-4 bg-void border border-border-default p-0.5">
+                <div class="h-full bg-signal" style="width: 94%"></div>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <div class="text-signal font-bold uppercase tracking-widest text-[10px]">
+                ALERTS: 14 PRODUCTS REQUIRE ACTION
+              </div>
+              <div class="space-y-1 text-xs opacity-80">
+                <div class="flex gap-2">
+                  <span>▸</span>
+                  <span>SKU-4421 MISSING PFAS REPORT</span>
+                </div>
+                <div class="flex gap-2">
+                  <span>▸</span>
+                  <span>SKU-8834 CERT EXPIRY: 14 DAYS</span>
+                </div>
+                <div class="flex gap-2">
+                  <span>▸</span>
+                  <span>SKU-2291 ORIGIN DATA INCOMPLETE</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-border-default space-y-1 opacity-60 text-[10px] uppercase">
+              <div>LAST PASSPORT SCAN: 4 MIN AGO</div>
+              <div>VERIFY URL: verify.passr.eu/01/...</div>
+            </div>
+
+            <a href="/portal" class="block w-full py-2 bg-surface-3 border border-border-default text-center hover:bg-surface-2 transition-colors uppercase tracking-widest text-xs text-white">
+              OPEN COMPLIANCE LOCKER →
+            </a>
+          </div>
+        </div>
+
+        <!-- Stat Pills -->
+        <div class="flex justify-between gap-4">
+          <div class="flex-1 py-2 px-3 border border-border-default font-mono text-[10px] text-metal uppercase text-center tracking-widest">
+            247 SKUs
+          </div>
+          <div class="flex-1 py-2 px-3 border border-border-default font-mono text-[10px] text-metal uppercase text-center tracking-widest">
+            94% Compliant
+          </div>
+          <div class="flex-1 py-2 px-3 border border-border-default font-mono text-[10px] text-metal uppercase text-center tracking-widest">
+            12K Scans/mo
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  .animate-scan {
+    animation: scan 8s linear infinite;
+  }
+
+  .stagger-1 { animation-delay: 0.15s; }
+  .stagger-2 { animation-delay: 0.30s; }
+  .stagger-3 { animation-delay: 0.45s; }
+</style>

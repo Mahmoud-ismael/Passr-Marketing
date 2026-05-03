@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Typecheck
+        run: npm run astro check
+      
+      - name: Build
+        run: npm run build
+
+  lighthouse:
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.13.x
+          # Note: lhci requires a more detailed config for static sites
+          # For now, we verify build output exists
+          [ -d ".vercel/output/static" ] || exit 1
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: [quality, lighthouse]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
