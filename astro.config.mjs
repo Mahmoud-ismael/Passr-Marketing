@@ -2,11 +2,11 @@ import { defineConfig } from 'astro/config'
 import tailwind from '@astrojs/tailwind'
 import sitemap from '@astrojs/sitemap'
 import mdx from '@astrojs/mdx'
-import vercel from '@astrojs/vercel'
+import vercel from '@astrojs/vercel/static'
 
 export default defineConfig({
   site: 'https://passr.eu',
-  output: 'hybrid',
+  output: 'static',
   adapter: vercel(),
   integrations: [
     tailwind(), 
