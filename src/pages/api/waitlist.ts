@@ -2,6 +2,8 @@ import type { APIRoute } from 'astro';
 import { z } from 'zod';
 import { Resend } from 'resend';
 
+export const prerender = false;
+
 const waitlistSchema = z.object({
   email: z.string().email(),
 });

@@ -6,7 +6,7 @@ import vercel from '@astrojs/vercel'
 
 export default defineConfig({
   site: 'https://passr.eu',
-  output: 'server',
+  output: 'hybrid',
   adapter: vercel(),
   integrations: [
     tailwind(), 
