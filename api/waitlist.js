@@ -46,8 +46,9 @@ export default async function handler(req, res) {
 
   // 2. Send confirmation email
   const fromEmail = process.env.WAITLIST_FROM_EMAIL || 'onboarding@resend.dev';
+  const fromName = `Passr <${fromEmail}>`;
   const { error: emailError } = await resend.emails.send({
-    from: fromEmail,
+    from: fromName,
     to: email,
     subject: 'Welcome to the Passr Protocol (Beta Access Confirmed)',
     html: `
@@ -71,7 +72,7 @@ export default async function handler(req, res) {
         <p style="font-size: 14px; font-weight: bold; margin-top: 32px;">— The Passr Team</p>
         <hr style="border: none; border-top: 1px solid #EEE; margin: 32px 0;" />
         <p style="font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 0.1em;">
-          Passr Secured Compliance Protocol // Berlin, Germany
+          Passr — Hisako Technologies OÜ // Tallinn, Estonia
         </p>
       </div>
     `,
