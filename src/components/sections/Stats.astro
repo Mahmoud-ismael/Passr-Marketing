@@ -19,18 +19,15 @@ const stats = [
 ];
 ---
 
-<section class="w-full bg-surface-1 border-y border-border-default">
-  <div class="container mx-auto px-6">
-    <div class="grid grid-cols-1 md:grid-cols-4 min-h-[96px]">
-      {stats.map((stat, index) => (
-        <div class:list={[
-          "flex flex-col items-center justify-center py-8 md:py-0",
-          index !== stats.length - 1 ? "md:border-r border-border-default" : ""
-        ]}>
-          <span class="font-display font-bold text-3xl text-white tracking-tight uppercase">
+<section class="section-container bg-surface-1 border-y border-border-subtle">
+  <div class="container-inner">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      {stats.map((stat) => (
+        <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
+          <span class="font-display font-bold text-[var(--text-stats)] text-white tracking-[-0.02em] uppercase leading-[1.0]">
             {stat.value}
           </span>
-          <span class="font-mono text-[10px] text-metal uppercase tracking-[0.15em] mt-1">
+          <span class="font-mono text-[11px] text-metal uppercase tracking-[0.12em] mt-3">
             {stat.label}
           </span>
         </div>

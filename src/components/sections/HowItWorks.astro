@@ -38,35 +38,32 @@ const steps = [
 ];
 ---
 
-<section class="bg-surface-1 py-[120px]">
-  <div class="container mx-auto px-6 max-w-[1200px]">
-    <div class="mb-20 text-center">
-      <SectionLabel label="HOW IT WORKS" class="justify-center border-l-0 border-b border-metal inline-block pb-2 px-6" />
-      <h2 class="font-display font-bold text-4xl text-white tracking-tight uppercase mt-8">
+<section class="section-container bg-void">
+  <div class="container-inner">
+    <div class="mb-[var(--space-headline-body)] text-center">
+      <SectionLabel label="HOW IT WORKS" class="justify-center border-l-0 border-b border-metal inline-block pb-2 px-6 mb-[var(--space-label-headline)]" />
+      <h2 class="font-display font-bold text-[var(--text-h2)] text-white tracking-[-0.02em] uppercase leading-[1.0]">
         Live in under 30 minutes.
       </h2>
     </div>
 
-    <div class="relative grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16">
-      <!-- Connection Line (Desktop) -->
-      <div class="hidden md:block absolute top-[52px] left-0 w-full h-px border-t border-dashed border-border-strong -z-0"></div>
-
-      {steps.map((step, index) => (
-        <div class="relative flex flex-col items-center md:items-start text-center md:text-left z-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {steps.map((step) => (
+        <div class="card-featured relative flex flex-col items-center md:items-start text-center md:text-left">
           <!-- Watermark Number -->
-          <div class="absolute -top-4 md:-top-6 left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 font-display font-bold text-6xl text-surface-3 opacity-50 pointer-events-none -z-10">
+          <div class="absolute top-4 right-4 font-display font-bold text-4xl text-surface-3 opacity-30 pointer-events-none">
             {step.num}
           </div>
 
           <!-- Icon Circle -->
-          <div class="w-12 h-12 rounded-full bg-surface-1 border border-border-strong flex items-center justify-center mb-8">
+          <div class="w-12 h-12 rounded-none bg-surface-1 border border-border-default flex items-center justify-center mb-6">
             <step.icon size={24} class={step.iconColor} />
           </div>
 
-          <h3 class="font-display font-semibold text-white uppercase tracking-widest text-sm mb-4">
+          <h3 class="font-display font-semibold text-white uppercase tracking-[0.12em] text-[var(--text-card-title)] mb-4">
             {step.title}
           </h3>
-          <p class="font-mono text-xs text-metal uppercase tracking-wider leading-relaxed">
+          <p class="font-mono text-[13px] text-metal uppercase tracking-[0.12em] leading-relaxed">
             {step.body}
           </p>
         </div>
@@ -74,8 +71,8 @@ const steps = [
     </div>
 
     <!-- Time Estimate Row -->
-    <div class="mt-20 pt-8 border-t border-border-default flex justify-center">
-      <div class="font-mono text-[10px] text-metal uppercase tracking-[0.2em] flex flex-wrap justify-center gap-x-6 gap-y-2">
+    <div class="mt-16 pt-8 border-t border-border-subtle flex justify-center">
+      <div class="font-mono text-[11px] text-metal uppercase tracking-[0.12em] flex flex-wrap justify-center gap-x-6 gap-y-2">
         {steps.map((step, index) => (
           <div class="flex items-center gap-2">
             <span>STEP {step.num}: {step.time}</span>

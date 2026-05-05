@@ -1,6 +1,5 @@
 ---
 import SectionLabel from '../shared/SectionLabel.astro';
-import Button from '../shared/Button.astro';
 import { AlertTriangle } from '@lucide/astro';
 
 const timeline = [
@@ -31,85 +30,187 @@ const timeline = [
   {
     date: 'Late 2026 / Q1 2027',
     status: 'warning',
-    pulse: true,
     label: 'TEXTILE DELEGATED ACT ADOPTION',
     body: 'The 18-month implementation clock starts here. Brands that are not ready will scramble.',
   },
   {
     date: 'Mid 2028',
-    status: 'signal',
-    large: true,
+    status: 'danger',
     label: 'MANDATORY DPP ENFORCEMENT — TEXTILES',
     body: 'Every outdoor brand selling in the EU requires a compliant Digital Product Passport. Non-compliant products blocked at import.',
   },
 ];
 ---
 
-<section class="bg-void py-[120px] border-t border-border-strong">
-  <div class="container mx-auto px-6 max-w-[1200px]">
-    <div class="mb-20">
+<section class="section-container bg-[#0A0A0A] border-t border-[#333333]">
+  <div class="container-inner">
+    <div class="mb-16">
       <SectionLabel label="EU REGULATORY TIMELINE" class="mb-8" />
-      <h2 class="font-display font-bold text-4xl text-white tracking-tight uppercase leading-[1.1]">
+      <h2 class="font-display font-bold text-[clamp(36px,4vw,56px)] text-[#F4F4F4] tracking-[-0.02em] uppercase leading-[1.0]">
         The deadline is confirmed.<br />
         No extensions have been granted.
       </h2>
     </div>
 
-    <!-- Vertical Timeline -->
-    <div class="relative ml-4 md:ml-0 md:pl-0">
+    <!-- Timeline Wrapper -->
+    <div class="relative">
       <!-- Vertical Line -->
-      <div class="absolute left-0 md:left-4 top-2 bottom-2 w-px bg-border-strong"></div>
+      <div class="timeline-line"></div>
 
-      <div class="space-y-16">
-        {timeline.map((item) => (
-          <div class="relative pl-10 md:pl-16">
-            <!-- Dot -->
-            <div class:list={[
-              "absolute left-[-4px] md:left-[12px] top-1.5 rounded-full z-10",
-              item.status === 'verified' && "bg-verified w-2 h-2",
-              item.status === 'warning' && "bg-warning w-2 h-2",
-              item.status === 'signal' && "bg-signal",
-              item.large ? "w-3 h-3 left-[-6px] md:left-[10px]" : "w-2 h-2",
-              item.pulse && "animate-pulse-ring"
-            ]}></div>
+      <div class="flex flex-col">
+        {timeline.map((item, index) => {
+          const isLast = index === timeline.length - 1;
+          const isWarning = item.status === 'warning';
+          const isDanger = item.status === 'danger';
+          
+          return (
+            <div class="timeline-entry">
+              <!-- Dot Column -->
+              <div class="w-6 flex flex-col items-center flex-shrink-0">
+                <div class:list={[
+                  "timeline-dot",
+                  item.status === 'verified' && "dot-verified",
+                  isWarning && "dot-warning",
+                  isDanger && "dot-danger"
+                ]}></div>
+              </div>
 
-            <div class="flex flex-col gap-2">
-              <span class="font-mono text-xs text-metal uppercase tracking-widest">{item.date}</span>
-              <h3 class="font-display font-bold text-lg text-white uppercase tracking-tight">{item.label}</h3>
-              <p class="font-mono text-sm text-metal uppercase tracking-wider leading-relaxed max-w-2xl">
-                {item.body}
-              </p>
+              <!-- Content Column -->
+              <div class="flex flex-col">
+                <span class="font-mono text-[11px] text-[#858585] uppercase tracking-[0.12em] mb-1">
+                  {item.date}
+                </span>
+                <h3 class:list={[
+                  "font-display uppercase tracking-[0.02em] mb-2",
+                  isDanger ? "text-[20px] font-bold text-[#FF3B30]" : "text-[16px] font-semibold text-[#F4F4F4]"
+                ]}>
+                  {item.label}
+                </h3>
+                <p class="font-mono text-[13px] text-[#858585] leading-[1.6] max-w-2xl">
+                  {item.body}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
 
     <!-- Callout Card -->
-    <div class="mt-32 bg-surface-1 border-l-4 border-l-signal p-8 md:p-10 flex flex-col lg:flex-row items-center justify-between gap-8">
-      <div class="flex items-start gap-6">
-        <AlertTriangle size={24} class="text-signal shrink-0 mt-1" />
-        <p class="font-display font-semibold text-lg md:text-xl text-white leading-snug max-w-2xl">
-          Brands piloting now will have a validated system before enforcement.
-          <span class="block text-metal mt-2 text-base font-normal">
-            Brands waiting will be scrambling during the same 18-month window as every competitor.
-          </span>
-        </p>
+    <div class="callout-card">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div class="flex items-start gap-6">
+          <AlertTriangle size={20} class="text-[#FF3B30] shrink-0 mt-1" />
+          <p class="font-display font-semibold text-[15px] text-[#F4F4F4] leading-relaxed max-w-2xl">
+            Brands piloting now will have a validated system before enforcement. <br class="hidden lg:block" />
+            Brands waiting will scramble during the same 18-month window as every competitor.
+          </p>
+        </div>
+        <a href="/get-started" class="btn-pilot shrink-0">
+          START YOUR PILOT →
+        </a>
       </div>
-      <Button variant="primary" size="lg" href="/get-started" class="shrink-0">
-        START YOUR PILOT →
-      </Button>
     </div>
   </div>
 </section>
 
 <style>
-  @keyframes pulse-ring {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
-    70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+  .timeline-line {
+    position: absolute;
+    left: 11px;
+    width: 1px;
+    background: #2A2A2A;
+    top: 24px;
+    bottom: 48px;
+    z-index: 0;
   }
-  .animate-pulse-ring {
-    animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+
+  .timeline-entry {
+    display: flex;
+    gap: 32px;
+    padding-bottom: 48px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-top: 4px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  .dot-verified {
+    background: #22C55E;
+    border: 1px solid #22C55E;
+  }
+
+  .dot-warning {
+    background: transparent;
+    border: 1px solid #F59E0B;
+    animation: pulse-warning 2s ease infinite;
+  }
+
+  .dot-danger {
+    width: 16px;
+    height: 16px;
+    background: #FF3B30;
+    border: 1px solid #FF3B30;
+    margin-top: 4px;
+    margin-left: -3px; /* Center larger dot */
+    animation: pulse-danger 2s ease infinite;
+  }
+
+  @keyframes pulse-warning {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
+  }
+
+  @keyframes pulse-danger {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(255, 59, 48, 0); }
+  }
+
+  .callout-card {
+    background: #111111;
+    border: 1px solid #333333;
+    border-left: 4px solid #FF3B30;
+    padding: 28px 32px;
+    margin-top: 40px;
+  }
+
+  .btn-pilot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #FF3B30;
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    border-radius: 2px;
+    border: none;
+    min-width: 200px;
+    transition: background 200ms ease;
+    text-decoration: none;
+  }
+
+  .btn-pilot:hover {
+    background: #E0342A;
+  }
+
+  @media (max-width: 768px) {
+    .callout-card .flex {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .btn-pilot {
+      width: 100%;
+    }
   }
 </style>

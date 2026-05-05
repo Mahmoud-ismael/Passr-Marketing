@@ -21,22 +21,22 @@ const solutions = [
 ];
 ---
 
-<section class="bg-void py-[120px]">
-  <div class="container mx-auto px-6 max-w-[1200px]">
+<section class="section-container bg-void">
+  <div class="container-inner">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32">
       
       <!-- LEFT SIDE: THE PROBLEM -->
-      <div class="flex flex-col gap-8">
-        <SectionLabel label="THE CURRENT STATE" />
+      <div class="flex flex-col">
+        <SectionLabel label="THE CURRENT STATE" class="mb-[var(--space-label-headline)]" />
         
-        <h2 class="font-display font-bold text-3xl text-white tracking-tight uppercase leading-[1.1]">
+        <h2 class="font-display font-bold text-[var(--text-h2)] text-white tracking-[-0.02em] uppercase leading-[1.0] mb-[var(--space-headline-body)]">
           Your compliance data lives in a Dropbox folder.
         </h2>
 
         <!-- File Tree Visualization -->
-        <div class="bg-surface-1 border border-border-default p-6 font-mono text-sm">
-          <div class="text-metal mb-2 uppercase tracking-widest text-[10px]">BRAND_COMPLIANCE/</div>
-          <div class="space-y-1">
+        <div class="card-standard mb-8">
+          <div class="text-metal mb-2 uppercase tracking-[0.12em] text-[11px] font-mono">BRAND_COMPLIANCE/</div>
+          <div class="space-y-1 font-mono text-[14px]">
             <div>├── PFAS_Reports/</div>
             <div class="pl-4">│   ├── mens_jacket_v2_FINAL.pdf</div>
             <div class="pl-4 text-signal">│   ├── mens_jacket_v2_FINAL_updated.pdf</div>
@@ -53,36 +53,36 @@ const solutions = [
         </div>
 
         <div class="space-y-4">
-          <p class="font-mono text-sm text-metal uppercase tracking-wider flex gap-3">
+          <p class="font-mono text-[14px] text-metal uppercase tracking-[0.12em] flex gap-3">
             <span class="text-signal">×</span> Customs asks for a PFAS report. You can't find it.
           </p>
-          <p class="font-mono text-sm text-metal uppercase tracking-wider flex gap-3">
+          <p class="font-mono text-[14px] text-metal uppercase tracking-[0.12em] flex gap-3">
             <span class="text-signal">×</span> Retail buyer requests DPP link. You don't have one.
           </p>
-          <p class="font-mono text-sm text-metal uppercase tracking-wider flex gap-3">
+          <p class="font-mono text-[14px] text-metal uppercase tracking-[0.12em] flex gap-3">
             <span class="text-signal">×</span> 2028 deadline approaches. Your team has no system.
           </p>
         </div>
       </div>
 
       <!-- RIGHT SIDE: THE SOLUTION -->
-      <div class="flex flex-col gap-8">
-        <SectionLabel label="WITH PASSR" />
+      <div class="flex flex-col">
+        <SectionLabel label="WITH PASSR" class="mb-[var(--space-label-headline)]" />
         
-        <h2 class="font-display font-bold text-3xl text-white tracking-tight uppercase leading-[1.1]">
+        <h2 class="font-display font-bold text-[var(--text-h2)] text-white tracking-[-0.02em] uppercase leading-[1.0] mb-[var(--space-headline-body)]">
           One URL. Every certificate. Always current.
         </h2>
 
         <div class="flex flex-col gap-4">
           {solutions.map((solution) => (
-            <div class="bg-surface-1 border border-border-default border-l-[3px] border-l-verified p-6">
+            <div class="card-featured border-l-[3px] border-l-verified">
               <div class="flex items-center gap-3 mb-3">
                 <solution.icon size={20} class="text-verified" />
-                <h3 class="font-display font-semibold text-white uppercase tracking-widest text-sm">
+                <h3 class="font-display font-semibold text-white uppercase tracking-[0.12em] text-[var(--text-card-title)]">
                   {solution.title}
                 </h3>
               </div>
-              <p class="font-mono text-sm text-metal uppercase tracking-wider leading-relaxed">
+              <p class="font-mono text-[14px] text-metal uppercase tracking-[0.12em] leading-relaxed">
                 {solution.body}
               </p>
             </div>

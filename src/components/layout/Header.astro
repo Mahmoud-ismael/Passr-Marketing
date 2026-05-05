@@ -10,7 +10,7 @@ const navLinks = [
 ---
 
 <header class="fixed top-0 left-0 w-full h-16 bg-void border-b border-border-default z-50">
-  <div class="container mx-auto px-6 h-full flex items-center justify-between">
+  <div class="container-inner h-full flex items-center justify-between">
     <!-- Logo -->
     <a href="/" class="relative inline-flex items-center group">
       <span class="font-display font-bold text-xl tracking-tighter text-white uppercase">PASSR</span>
@@ -20,11 +20,11 @@ const navLinks = [
     <!-- Desktop Nav -->
     <nav class="hidden md:flex items-center gap-8">
       {navLinks.map(link => (
-        <a href={link.href} class="font-display font-medium text-sm text-metal hover:text-white transition-colors uppercase tracking-wider">
+        <a href={link.href} class="font-mono text-[11px] text-metal hover:text-white transition-colors uppercase tracking-[0.12em]">
           {link.label}
         </a>
       ))}
-      <div class="w-px h-4 bg-border-default"></div>
+      <div class="w-px h-4 bg-border-subtle"></div>
       <Button variant="ghost" size="sm" href="/signin">Sign In</Button>
       <Button variant="primary" size="sm" href="#waitlist">Get Started</Button>
     </nav>

@@ -43,11 +43,11 @@ const features = [
 ];
 ---
 
-<section class="bg-surface-1 py-[120px] border-y border-border-default">
-  <div class="container mx-auto px-6 max-w-[1200px]">
-    <div class="mb-20">
-      <SectionLabel label="PLATFORM FEATURES" class="mb-8" />
-      <h2 class="font-display font-bold text-4xl text-white tracking-tight uppercase leading-[1.1]">
+<section class="section-container bg-void border-y border-border-subtle">
+  <div class="container-inner">
+    <div class="mb-[var(--space-headline-body)]">
+      <SectionLabel label="PLATFORM FEATURES" class="mb-[var(--space-label-headline)]" />
+      <h2 class="font-display font-bold text-[var(--text-h2)] text-white tracking-[-0.02em] uppercase leading-[1.0]">
         Built for outdoor brands.<br />
         Built to the GS1 standard.
       </h2>
@@ -55,12 +55,12 @@ const features = [
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {features.map((feature) => (
-        <div class="bg-surface-2 border border-border-default p-8 flex flex-col items-start">
+        <div class="card-featured flex flex-col items-start">
           <feature.icon size={20} class="text-metal" />
-          <h3 class="font-display font-semibold text-lg text-white mt-4 mb-3 uppercase tracking-tight">
+          <h3 class="font-display font-semibold text-[var(--text-card-title)] text-white mt-4 mb-3 uppercase tracking-[0.12em]">
             {feature.title}
           </h3>
-          <p class="font-mono text-sm text-metal leading-relaxed uppercase tracking-wider">
+          <p class="font-mono text-[14px] text-metal leading-relaxed uppercase tracking-[0.12em]">
             {feature.body}
           </p>
         </div>

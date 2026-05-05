@@ -1,147 +1,125 @@
 ---
 import Button from '../shared/Button.astro';
 import SectionLabel from '../shared/SectionLabel.astro';
-import Badge from '../shared/Badge.astro';
 ---
 
-<section class="relative min-h-screen flex flex-col bg-void overflow-hidden">
-  <!-- Subtle Grid Overlay -->
-  <div class="absolute inset-0 z-0 pointer-events-none opacity-20" 
-       style="background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 40px 40px;">
+<section class="relative min-h-screen flex flex-col bg-[#0A0A0A] overflow-hidden">
+  <!-- Background Grid Overlay -->
+  <div class="absolute inset-0 z-0 pointer-events-none opacity-100" 
+       style="background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 48px 48px; background-color: #0A0A0A;">
   </div>
 
-  <!-- Hero Top Banner (below Nav) -->
-  <div class="relative z-10 w-full h-9 bg-surface-3 border-b border-border-default mt-16 flex items-center">
-    <div class="container mx-auto px-6 flex items-center justify-between">
+  <!-- Announcement Banner (below Nav) -->
+  <div class="relative z-20 w-full h-10 bg-[#111111] border-b border-[#222222] mt-16 flex items-center">
+    <div class="w-full px-12 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-1.5 h-1.5 bg-signal rounded-full animate-blink"></div>
-        <span class="font-mono text-[10px] text-white uppercase tracking-widest">
-          EU ESPR TEXTILE DEADLINE: 2028 — BRANDS SELLING IN EU MUST COMPLY
+        <div class="w-2 h-2 bg-[#FF3B30] rounded-full animate-blink"></div>
+        <span class="font-mono text-[11px] text-[#858585] uppercase tracking-[0.12em]">
+          EU ESPR TEXTILE ENFORCEMENT: 2028 — IS YOUR BRAND READY?
         </span>
       </div>
-      <a href="/requirements" class="font-mono text-[10px] text-signal uppercase tracking-widest hover:underline">
-        SEE REQUIREMENTS →
+      <a href="/timeline" class="font-mono text-[11px] text-[#FF3B30] uppercase tracking-[0.12em] hover:underline">
+        SEE TIMELINE →
       </a>
     </div>
   </div>
 
   <!-- Main Content Area -->
-  <div class="relative z-10 flex-1 flex items-center py-20">
-    <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-10 gap-16 items-center">
+  <div class="relative z-10 flex-1 flex items-center py-24">
+    <div class="container-inner grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
       
-      <!-- LEFT COLUMN (60%) -->
-      <div class="lg:col-span-6 flex flex-col gap-10">
-        <SectionLabel label="DIGITAL PRODUCT PASSPORT INFRASTRUCTURE" />
+      <!-- LEFT COLUMN (Headline & Description) -->
+      <div class="lg:col-span-7 flex flex-col">
+        <SectionLabel label="DIGITAL PRODUCT PASSPORT INFRASTRUCTURE" class="mb-10" />
         
-        <div class="flex flex-col">
-          <h1 class="font-display font-bold text-[64px] leading-[1.0] tracking-[-0.02em] text-white uppercase animate-fade-in stagger-1">
+        <div class="flex flex-col mb-10">
+          <div class="font-display font-bold text-[clamp(56px,7vw,88px)] leading-[0.92] tracking-[-0.03em] text-[#F4F4F4] uppercase animate-fade-in stagger-1">
             COMPLIANCE
-          </h1>
-          <h1 class="font-display font-bold text-[64px] leading-[1.0] tracking-[-0.02em] text-white uppercase animate-fade-in stagger-2">
-            VERIFIED<span class="text-signal">.</span>
-          </h1>
-          <h1 class="font-display font-bold text-[64px] leading-[1.0] tracking-[-0.02em] text-white uppercase ml-8 animate-fade-in stagger-3">
+          </div>
+          <div class="font-display font-bold text-[clamp(56px,7vw,88px)] leading-[0.92] tracking-[-0.03em] text-[#F4F4F4] uppercase animate-fade-in stagger-2">
+            <span>VERIFIED</span><span style="color:#FF3B30">.</span>
+          </div>
+          <div class="font-display font-bold text-[clamp(56px,7vw,88px)] leading-[0.92] tracking-[-0.03em] text-[#F4F4F4] uppercase pl-12 animate-fade-in stagger-3">
             SUPPLY CHAIN
-          </h1>
+          </div>
         </div>
 
-        <p class="font-display text-2xl text-metal max-w-[480px] leading-snug">
-          Digital product passports for outdoor and activewear brands. 
-          EU ESPR compliant. GS1 certified. Live in days, not months.
+        <p class="font-mono text-[15px] text-[#858585] max-w-[520px] leading-[1.7] mb-12 uppercase tracking-[0.04em]">
+          The industrial standard for digital product passports. 
+          EU ESPR compliant. GS1 certified. 
+          Built for outdoor and activewear brands.
         </p>
 
-        <div class="flex flex-col gap-4 mt-4">
+        <div class="flex flex-col gap-4">
           <div class="flex flex-wrap items-center gap-6">
-            <Button size="lg" href="/get-started">START FREE TRIAL</Button>
-            <Button variant="ghost" size="lg" href="/demo">VIEW DEMO PASSPORT →</Button>
+            <a href="/get-started" class="btn-primary">
+              START FREE TRIAL
+            </a>
+            <a href="/demo" class="btn-ghost">
+              VIEW DEMO PASSPORT →
+            </a>
           </div>
-          <p class="font-mono text-[10px] text-metal uppercase tracking-widest">
-            No credit card required. Setup in under 30 minutes.
+          <p class="font-mono text-[11px] text-[#858585] uppercase tracking-[0.12em] mt-4">
+            No credit card required &nbsp;·&nbsp; EU data residency &nbsp;·&nbsp; Setup in 30 minutes
           </p>
         </div>
       </div>
 
-      <!-- RIGHT COLUMN (40%) -->
-      <div class="lg:col-span-4 flex flex-col gap-6">
-        <!-- COMPLIANCE TERMINAL CARD -->
-        <div class="relative bg-surface-1 border border-border-strong rounded-none overflow-hidden group">
-          <!-- Scanline Animation -->
-          <div class="absolute inset-0 z-20 pointer-events-none h-px bg-white/10 animate-scan"></div>
-          
+      <!-- RIGHT COLUMN (Terminal Card) -->
+      <div class="lg:col-span-5 flex justify-center lg:justify-end">
+        <div class="terminal-card">
           <!-- Terminal Header -->
-          <div class="h-8 bg-surface-3 border-b border-border-default flex items-center justify-between px-4">
-            <span class="font-mono text-[10px] text-metal uppercase tracking-widest">PASSR COMPLIANCE TERMINAL v2.1</span>
-            <div class="flex gap-1.5">
-              <div class="w-1.5 h-1.5 bg-metal rounded-full"></div>
-              <div class="w-1.5 h-1.5 bg-warning rounded-full"></div>
-              <div class="w-1.5 h-1.5 bg-verified rounded-full"></div>
+          <div class="terminal-header">
+            <span class="font-mono text-[11px] text-[#858585] uppercase tracking-[0.12em]">PASSR COMPLIANCE TERMINAL v2.1</span>
+            <div class="flex gap-2">
+              <div class="w-2 h-2 bg-[#3A3A3A] rounded-full"></div>
+              <div class="w-2 h-2 bg-[#F59E0B] rounded-full"></div>
+              <div class="w-2 h-2 bg-[#22C55E] rounded-full"></div>
             </div>
           </div>
 
           <!-- Terminal Content -->
-          <div class="p-6 font-mono text-sm space-y-6 text-metal">
+          <div class="terminal-content">
             <div class="space-y-1">
               <div class="flex justify-between">
                 <span>BRAND:</span>
-                <span class="text-white">PEAK PERFORMANCE EU</span>
+                <span class="text-[#F4F4F4]">PEAK PERFORMANCE EU</span>
               </div>
               <div class="flex justify-between">
                 <span>SKU COUNT:</span>
-                <span class="text-white">247</span>
+                <span class="text-[#F4F4F4]">247</span>
               </div>
             </div>
 
-            <div class="space-y-2">
+            <div class="space-y-2 mt-4">
               <div class="flex justify-between items-end">
                 <span>COMPLIANCE STATUS:</span>
-                <span class="text-white font-bold">94%</span>
+                <span class="text-[#F4F4F4] font-bold">94%</span>
               </div>
-              <div class="h-4 bg-void border border-border-default p-0.5">
-                <div class="h-full bg-signal" style="width: 94%"></div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 94%"></div>
               </div>
             </div>
 
-            <div class="space-y-3">
-              <div class="text-signal font-bold uppercase tracking-widest text-[10px]">
+            <div class="space-y-1 mt-6">
+              <div class="text-[#FF3B30] uppercase tracking-[0.12em] text-[11px] font-bold">
                 ALERTS: 14 PRODUCTS REQUIRE ACTION
               </div>
-              <div class="space-y-1 text-xs opacity-80">
-                <div class="flex gap-2">
-                  <span>▸</span>
-                  <span>SKU-4421 MISSING PFAS REPORT</span>
-                </div>
-                <div class="flex gap-2">
-                  <span>▸</span>
-                  <span>SKU-8834 CERT EXPIRY: 14 DAYS</span>
-                </div>
-                <div class="flex gap-2">
-                  <span>▸</span>
-                  <span>SKU-2291 ORIGIN DATA INCOMPLETE</span>
-                </div>
+              <div class="flex flex-col text-[#FF3B30] text-[13px] font-mono">
+                <div class="whitespace-pre">  ▸ SKU-4421  MISSING PFAS REPORT</div>
+                <div class="whitespace-pre">  ▸ SKU-8834  CERT EXPIRY: 14 DAYS</div>
+                <div class="whitespace-pre">  ▸ SKU-2291  ORIGIN INCOMPLETE</div>
               </div>
             </div>
 
-            <div class="pt-4 border-t border-border-default space-y-1 opacity-60 text-[10px] uppercase">
+            <div class="pt-6 mt-6 border-t border-[#333333] space-y-1 opacity-60 text-[10px] uppercase tracking-[0.12em]">
               <div>LAST PASSPORT SCAN: 4 MIN AGO</div>
               <div>VERIFY URL: verify.passr.eu/01/...</div>
             </div>
 
-            <a href="/portal" class="block w-full py-2 bg-surface-3 border border-border-default text-center hover:bg-surface-2 transition-colors uppercase tracking-widest text-xs text-white">
+            <a href="/portal" class="terminal-button mt-6">
               OPEN COMPLIANCE LOCKER →
             </a>
-          </div>
-        </div>
-
-        <!-- Stat Pills -->
-        <div class="flex justify-between gap-4">
-          <div class="flex-1 py-2 px-3 border border-border-default font-mono text-[10px] text-metal uppercase text-center tracking-widest">
-            247 SKUs
-          </div>
-          <div class="flex-1 py-2 px-3 border border-border-default font-mono text-[10px] text-metal uppercase text-center tracking-widest">
-            94% Compliant
-          </div>
-          <div class="flex-1 py-2 px-3 border border-border-default font-mono text-[10px] text-metal uppercase text-center tracking-widest">
-            12K Scans/mo
           </div>
         </div>
       </div>
@@ -161,13 +139,8 @@ import Badge from '../shared/Badge.astro';
     to { opacity: 1; transform: translateY(0); }
   }
 
-  @keyframes scan {
-    0% { top: 0; }
-    100% { top: 100%; }
-  }
-
   .animate-blink {
-    animation: blink 1s step-end infinite;
+    animation: blink 1.2s step-end infinite;
   }
 
   .animate-fade-in {
@@ -175,11 +148,117 @@ import Badge from '../shared/Badge.astro';
     opacity: 0;
   }
 
-  .animate-scan {
-    animation: scan 8s linear infinite;
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #FF3B30;
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    border-radius: 2px;
+    border: none;
+    min-width: 200px;
+    transition: background 200ms ease;
+    text-decoration: none;
   }
 
-  .stagger-1 { animation-delay: 0.15s; }
-  .stagger-2 { animation-delay: 0.30s; }
-  .stagger-3 { animation-delay: 0.45s; }
+  .btn-primary:hover {
+    background: #E0342A;
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: #858585;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 16px 24px;
+    border: 1px solid #333333;
+    border-radius: 2px;
+    transition: all 200ms ease;
+    text-decoration: none;
+  }
+
+  .btn-ghost:hover {
+    color: #F4F4F4;
+    border-color: #858585;
+  }
+
+  .terminal-card {
+    min-width: 480px;
+    background: #111111;
+    border: 1px solid #858585;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  }
+
+  .terminal-header {
+    background: #1A1A1A;
+    border-bottom: 1px solid #333333;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .terminal-content {
+    padding: 24px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    line-height: 2.0;
+    color: #858585;
+  }
+
+  .progress-bar-bg {
+    background: #1A1A1A;
+    border: 1px solid #333333;
+    height: 6px;
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  .progress-bar-fill {
+    background: #FF3B30;
+    height: 100%;
+  }
+
+  .terminal-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #1A1A1A;
+    border: 1px solid #333333;
+    text-align: center;
+    color: #F4F4F4;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    transition: all 200ms ease;
+  }
+
+  .terminal-button:hover {
+    background: #242424;
+    border-color: #444444;
+  }
+
+  @media (max-width: 1024px) {
+    .terminal-card {
+      min-width: 100%;
+    }
+  }
 </style>

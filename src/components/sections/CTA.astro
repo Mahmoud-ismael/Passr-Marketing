@@ -2,16 +2,16 @@
 import SectionLabel from '../shared/SectionLabel.astro';
 ---
 
-<section id="waitlist" class="bg-surface-1 py-[120px] border-t border-signal">
-  <div class="container mx-auto px-6 max-w-[680px] text-center">
-    <SectionLabel label="EARLY ACCESS" class="justify-center border-l-0 border-b border-metal inline-block pb-2 px-6" />
+<section id="waitlist" class="section-container bg-surface-1 border-t-4 border-signal">
+  <div class="container-inner max-w-[800px] text-center">
+    <SectionLabel label="EARLY ACCESS" class="justify-center border-l-0 border-b border-metal inline-block pb-2 px-6 mb-[var(--space-label-headline)]" />
     
-    <h2 class="font-display font-bold text-4xl text-white tracking-tight uppercase mt-12 mb-6 leading-tight">
+    <h2 class="font-display font-bold text-[var(--text-h2)] text-white tracking-[-0.02em] uppercase leading-[1.0] mb-[var(--space-headline-body)]">
       The 2028 deadline is fixed.<br />
       Your preparation window is not.
     </h2>
 
-    <p class="font-mono text-base text-metal uppercase tracking-wider mb-12">
+    <p class="font-mono text-[var(--text-body)] text-metal uppercase tracking-[0.12em] mb-[var(--space-body-cta)]">
       Join outdoor brands already building their DPP infrastructure.<br class="hidden md:block" />
       Setup takes under 30 minutes.
     </p>
@@ -23,24 +23,24 @@ import SectionLabel from '../shared/SectionLabel.astro';
           name="email"
           required 
           placeholder="brand@yourcompany.com" 
-          class="flex-1 h-12 bg-surface-3 border border-border-default px-4 font-mono text-sm text-white placeholder:text-metal focus:outline-none focus:border-metal transition-colors"
+          class="flex-1 h-14 bg-surface-3 border border-border-subtle px-6 font-mono text-[14px] text-white placeholder:text-metal focus:outline-none focus:border-metal transition-colors"
         />
         <button 
           type="submit" 
-          class="h-12 bg-signal text-white font-display font-semibold uppercase tracking-widest px-8 hover:bg-[#E0342A] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          class="h-14 bg-signal text-white font-display font-semibold uppercase tracking-[0.12em] px-10 hover:bg-[#E0342A] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           REQUEST ACCESS
         </button>
       </form>
-      <p id="form-message" class="mt-4 font-mono text-xs uppercase tracking-widest min-h-[16px]"></p>
+      <p id="form-message" class="mt-6 font-mono text-[11px] uppercase tracking-[0.12em] min-h-[16px]"></p>
     </div>
 
-    <div class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 opacity-50">
-      <div class="font-mono text-[10px] text-metal uppercase tracking-widest">No credit card required</div>
+    <div class="mt-12 flex flex-wrap justify-center gap-x-6 gap-y-2 opacity-50">
+      <div class="font-mono text-[11px] text-metal uppercase tracking-[0.12em]">No credit card required</div>
       <div class="hidden md:block text-metal opacity-30">·</div>
-      <div class="font-mono text-[10px] text-metal uppercase tracking-widest">EU data residency</div>
+      <div class="font-mono text-[11px] text-metal uppercase tracking-[0.12em]">EU data residency</div>
       <div class="hidden md:block text-metal opacity-30">·</div>
-      <div class="font-mono text-[10px] text-metal uppercase tracking-widest">Cancel anytime</div>
+      <div class="font-mono text-[11px] text-metal uppercase tracking-[0.12em]">Cancel anytime</div>
     </div>
   </div>
 </section>
