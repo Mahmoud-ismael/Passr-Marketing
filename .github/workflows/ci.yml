@@ -48,16 +48,3 @@ jobs:
           # Verify build output exists
           [ -d ".vercel/output/static" ] || exit 1
 
-  deploy:
-    if: github.ref == 'refs/heads/main'
-    needs: [quality, lighthouse]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'
