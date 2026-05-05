@@ -24,17 +24,28 @@ jobs:
       
       - name: Build
         run: npm run build
+      
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: .vercel/output/static
 
   lighthouse:
     needs: quality
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: .vercel/output/static
+
       - name: Lighthouse CI
         run: |
           npm install -g @lhci/cli@0.13.x
-          # Note: lhci requires a more detailed config for static sites
-          # For now, we verify build output exists
+          # Verify build output exists
           [ -d ".vercel/output/static" ] || exit 1
 
   deploy:
