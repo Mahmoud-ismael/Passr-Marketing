@@ -1,75 +1,201 @@
 ---
 import { Menu, X } from '@lucide/astro';
-import Button from '../shared/Button.astro';
 
 const navLinks = [
-  { label: 'Product', href: '/product' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'Docs', href: '/docs' },
+  { label: 'PRODUCT', href: '/product' },
+  { label: 'PRICING', href: '/pricing' },
+  { label: 'DOCS', href: '/docs' },
 ];
 ---
 
-<header class="fixed top-0 left-0 w-full h-16 bg-void border-b border-border-default z-50">
+<header id="site-header" class="header-main">
   <div class="container-inner h-full flex items-center justify-between">
     <!-- Logo -->
-    <a href="/" class="relative inline-flex items-center group">
-      <span class="font-display font-bold text-xl tracking-tighter text-white uppercase">PASSR</span>
-      <div class="absolute -top-1 -right-2 w-1.5 h-1.5 bg-signal rounded-full"></div>
+    <a href="/" class="logo-wrapper">
+      <span class="logo-text">PASSR</span>
+      <span class="logo-dot"></span>
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-8">
-      {navLinks.map(link => (
-        <a href={link.href} class="font-mono text-[11px] text-metal hover:text-white transition-colors uppercase tracking-[0.12em]">
-          {link.label}
+    <div class="hidden md:flex items-center gap-8">
+      <nav class="flex items-center gap-8">
+        {navLinks.map(link => (
+          <a href={link.href} class="nav-link">
+            {link.label}
+          </a>
+        ))}
+      </nav>
+      
+      <div class="flex items-center gap-4 ml-8">
+        <a href="/signin" class="nav-link">SIGN IN</a>
+        <a href="#waitlist" class="btn-get-started">
+          GET STARTED
         </a>
-      ))}
-      <div class="w-px h-4 bg-border-subtle"></div>
-      <Button variant="ghost" size="sm" href="/signin">Sign In</Button>
-      <Button variant="primary" size="sm" href="#waitlist">Get Started</Button>
-    </nav>
+      </div>
+    </div>
 
     <!-- Mobile Menu Toggle -->
-    <button id="menu-toggle" class="md:hidden text-white p-2" aria-label="Toggle menu">
-      <Menu id="menu-icon" class="block" />
-      <X id="close-icon" class="hidden" />
+    <button id="menu-toggle" class="md:hidden text-[#858585] p-2" aria-label="Toggle menu">
+      <Menu id="menu-icon" size={20} class="block" />
+      <X id="close-icon" size={20} class="hidden" />
     </button>
   </div>
 
   <!-- Mobile Nav Drawer -->
-  <div id="mobile-nav" class="hidden absolute top-16 left-0 w-full bg-surface-1 border-b border-border-default md:hidden animate-in slide-in-from-top duration-200">
-    <nav class="flex flex-col p-6 gap-6">
+  <div id="mobile-nav" class="hidden mobile-drawer">
+    <nav class="flex flex-col">
       {navLinks.map(link => (
-        <a href={link.href} class="font-display font-medium text-lg text-metal hover:text-white transition-colors uppercase tracking-widest">
+        <a href={link.href} class="mobile-link">
           {link.label}
         </a>
       ))}
-      <div class="h-px bg-border-default w-full"></div>
-      <div class="flex flex-col gap-4">
-        <Button variant="ghost" href="/signin" class="justify-start px-0">Sign In</Button>
-        <Button variant="primary" href="#waitlist">Get Started</Button>
-      </div>
+      <a href="/signin" class="mobile-link">SIGN IN</a>
+      <a href="#waitlist" class="btn-get-started w-full mt-5 h-12 flex items-center justify-center">
+        GET STARTED
+      </a>
     </nav>
   </div>
 </header>
 
+<style>
+  .header-main {
+    height: 64px;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #1A1A1A;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: border-color 200ms ease;
+  }
+
+  .header-main.scrolled {
+    border-bottom-color: #2A2A2A;
+  }
+
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .logo-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #F4F4F4;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+
+  .logo-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: #FF3B30;
+    border-radius: 50%;
+    margin-left: 3px;
+    vertical-align: super;
+  }
+
+  .nav-link {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: #858585;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: color 100ms ease;
+    text-transform: uppercase;
+  }
+
+  .nav-link:hover {
+    color: #F4F4F4;
+  }
+
+  .btn-get-started {
+    background: #FF3B30;
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 100ms ease;
+  }
+
+  .btn-get-started:hover {
+    background: #E0342A;
+  }
+
+  .mobile-drawer {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: #111111;
+    border-bottom: 1px solid #222222;
+    padding: 24px;
+    z-index: 99;
+  }
+
+  .mobile-link {
+    display: block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #858585;
+    padding: 14px 0;
+    border-bottom: 1px solid #1A1A1A;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .mobile-link:last-of-type {
+    border-bottom: none;
+  }
+</style>
+
 <script>
+  const header = document.getElementById('site-header');
   const toggle = document.getElementById('menu-toggle');
   const nav = document.getElementById('mobile-nav');
   const menuIcon = document.getElementById('menu-icon');
   const closeIcon = document.getElementById('close-icon');
 
+  // Scroll Behavior
+  window.addEventListener('scroll', () => {
+    header?.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // Mobile Menu Toggle
   toggle?.addEventListener('click', () => {
-    const isOpen = !nav?.classList.contains('hidden');
+    const isHidden = nav?.classList.contains('hidden');
     
-    if (isOpen) {
-      nav?.classList.add('hidden');
-      menuIcon?.classList.remove('hidden');
-      closeIcon?.classList.add('hidden');
-    } else {
+    if (isHidden) {
       nav?.classList.remove('hidden');
       menuIcon?.classList.add('hidden');
       closeIcon?.classList.remove('hidden');
+    } else {
+      nav?.classList.add('hidden');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    }
+  });
+
+  // Close mobile nav on click
+  nav?.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).tagName === 'A') {
+      nav.classList.add('hidden');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
     }
   });
 </script>

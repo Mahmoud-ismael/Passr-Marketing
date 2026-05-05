@@ -89,6 +89,7 @@
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    padding-top: 64px;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -152,4 +153,17 @@
     border: 1px solid var(--border-strong);
     padding: 32px;
   }
+}
+
+/* 5. Global Mobile Responsiveness */
+@media (max-width: 768px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .terminal-card { display: none; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .how-it-works-grid { grid-template-columns: 1fr; }
+  .connector-arrow { display: none; }
+  .passport-grid { grid-template-columns: 1fr; }
+  .phone-mockup { margin: 0 auto; max-width: 280px; }
 }

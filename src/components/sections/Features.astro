@@ -1,5 +1,4 @@
 ---
-import SectionLabel from '../shared/SectionLabel.astro';
 import { 
   FlaskConical, 
   QrCode, 
@@ -11,60 +10,116 @@ import {
 
 const features = [
   {
+    num: '01',
     icon: FlaskConical,
     title: 'PFAS COMPLIANCE ENGINE',
-    body: 'Structured chemical safety data with lab report storage. PFAS toggle logic with Severe Wet Weather exemption support. Expiry tracking with automated alerts.',
+    body: 'Structured chemical safety data with lab report storage. PFAS toggle logic with Severe Wet Weather exemption support.',
+    badge: 'EU ESPR COMPLIANT'
   },
   {
+    num: '02',
     icon: QrCode,
     title: 'GS1 DIGITAL LINK GENERATOR',
-    body: 'Generates compliant GS1 Digital Link URLs (https://verify.passr.eu/01/{GTIN}). Batch export ZIP of SVG/PNG files ready for packaging designers.',
+    body: 'Generates compliant GS1 Digital Link URLs (https://verify.passr.eu/01/{GTIN}). Batch export SVG/PNG files.',
+    badge: 'GS1 CERTIFIED'
   },
   {
+    num: '03',
     icon: Layers,
     title: 'MATERIAL COMPOSITION TREE',
-    body: 'Structured input for fibre type, percentage, and origin. Validates total to 100%. Displayed on consumer-facing passport automatically.',
+    body: 'Structured input for fibre type, percentage, and origin. Validates total to 100% for public passport display.',
+    badge: 'EU ESPR COMPLIANT'
   },
   {
+    num: '04',
     icon: MapPin,
     title: 'SUPPLY CHAIN ORIGIN MAPPER',
-    body: 'Document fabric mill, assembly factory, and warehouse locations. Satisfies EU ESPR origin traceability requirements.',
+    body: 'Document fabric mill, assembly factory, and warehouse locations. Satisfies EU ESPR traceability requirements.',
+    badge: 'EU ESPR COMPLIANT'
   },
   {
+    num: '05',
     icon: ShieldCheck,
     title: 'WHITE-LABEL PUBLIC PASSPORT',
-    body: 'Consumer-facing passport shows your brand logo. Passr branding is footer-only. GS1 QR code links to live, updatable data.',
+    body: 'Consumer-facing passport shows your brand logo. Passr branding is footer-only. GS1 QR code links to live data.',
+    badge: 'GDPR READY'
   },
   {
+    num: '06',
     icon: Archive,
     title: 'LEGAL DATA ESCROW',
-    body: 'One-click bulk download of all certificates and compliance records. Your data leaves with you if you cancel. No lock-in.',
+    body: 'One-click bulk download of all certificates and compliance records. Your data leaves with you if you cancel.',
+    badge: 'GDPR READY'
   },
 ];
 ---
 
-<section class="section-container bg-void border-y border-border-subtle">
+<section class="section-container bg-[#0A0A0A]">
   <div class="container-inner">
-    <div class="mb-[var(--space-headline-body)]">
-      <SectionLabel label="PLATFORM FEATURES" class="mb-[var(--space-label-headline)]" />
-      <h2 class="font-display font-bold text-[var(--text-h2)] text-white tracking-[-0.02em] uppercase leading-[1.0]">
-        Built for outdoor brands.<br />
-        Built to the GS1 standard.
+    <!-- Section Header -->
+    <div class="mb-16 max-w-[640px]">
+      <div class="border-l border-[#858585] pl-3 mb-6">
+        <span class="font-mono text-[11px] text-[#858585] uppercase tracking-[0.12em]">
+          PLATFORM FEATURES
+        </span>
+      </div>
+      
+      <h2 class="font-display font-bold text-[clamp(36px,4vw,52px)] text-[#F4F4F4] tracking-[-0.02em] leading-[1.0] uppercase">
+        BUILT FOR OUTDOOR BRANDS.<br />
+        BUILT TO THE <span class="text-[#FF3B30]">GS1</span> STANDARD.
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Grid Container -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-[#333333] border border-[#333333]">
       {features.map((feature) => (
-        <div class="card-featured flex flex-col items-start">
-          <feature.icon size={20} class="text-metal" />
-          <h3 class="font-display font-semibold text-[var(--text-card-title)] text-white mt-4 mb-3 uppercase tracking-[0.12em]">
+        <div class="feature-card">
+          <!-- Top Row -->
+          <div class="flex justify-between items-start mb-5">
+            <feature.icon size={20} class="feature-icon transition-colors duration-150" />
+            <span class="font-mono text-[11px] text-[#2A2A2A]">{feature.num}</span>
+          </div>
+
+          <!-- Content -->
+          <h3 class="font-display font-semibold text-[15px] text-[#F4F4F4] uppercase tracking-[0.04em] mt-5">
             {feature.title}
           </h3>
-          <p class="font-mono text-[14px] text-metal leading-relaxed uppercase tracking-[0.12em]">
+          <p class="font-mono text-[13px] text-[#858585] leading-[1.7] mt-3">
             {feature.body}
           </p>
+
+          <!-- Bottom Row -->
+          <div class="mt-8 pt-4">
+            <span class="font-mono text-[10px] text-[#333333] uppercase tracking-[0.12em]">
+              {feature.badge}
+            </span>
+          </div>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .feature-card {
+    background: #111111;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all 150ms ease;
+    cursor: default;
+  }
+
+  .feature-card:hover {
+    background: #161616;
+  }
+
+  .feature-card:hover .feature-icon {
+    color: #FF3B30;
+  }
+
+  .feature-icon {
+    color: #858585;
+  }
+</style>

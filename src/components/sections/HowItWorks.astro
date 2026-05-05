@@ -1,12 +1,11 @@
 ---
-import SectionLabel from '../shared/SectionLabel.astro';
 import { Upload, Shield, QrCode, CheckCircle } from '@lucide/astro';
 
 const steps = [
   {
     num: '01',
     icon: Upload,
-    iconColor: 'text-signal',
+    color: '#FF3B30',
     title: 'IMPORT YOUR CATALOG',
     body: 'Drop a CSV from Shopify or your ERP. Bulk import 500 SKUs in seconds.',
     time: '~5 MIN',
@@ -14,7 +13,7 @@ const steps = [
   {
     num: '02',
     icon: Shield,
-    iconColor: 'text-metal',
+    color: '#FF3B30',
     title: 'COMPLETE COMPLIANCE DATA',
     body: 'Fill the Compliance Locker: PFAS reports, material composition, factory origins.',
     time: '~15 MIN',
@@ -22,7 +21,7 @@ const steps = [
   {
     num: '03',
     icon: QrCode,
-    iconColor: 'text-metal',
+    color: '#FF3B30',
     title: 'GENERATE GS1 PASSPORTS',
     body: 'Download print-ready QR codes. Hand to packaging designer. Print on hangtags.',
     time: '~2 MIN',
@@ -30,7 +29,7 @@ const steps = [
   {
     num: '04',
     icon: CheckCircle,
-    iconColor: 'text-verified',
+    color: '#22C55E',
     title: 'STAY AHEAD OF DEADLINES',
     body: 'Automated alerts for expiring certs. Dashboard tracks compliance across every SKU.',
     time: 'ONGOING',
@@ -38,48 +37,141 @@ const steps = [
 ];
 ---
 
-<section class="section-container bg-void">
+<section class="section-container bg-[#111111]">
   <div class="container-inner">
-    <div class="mb-[var(--space-headline-body)] text-center">
-      <SectionLabel label="HOW IT WORKS" class="justify-center border-l-0 border-b border-metal inline-block pb-2 px-6 mb-[var(--space-label-headline)]" />
-      <h2 class="font-display font-bold text-[var(--text-h2)] text-white tracking-[-0.02em] uppercase leading-[1.0]">
+    <!-- Section Header -->
+    <div class="mb-20 text-center">
+      <div class="flex justify-center mb-6">
+        <span class="font-mono text-[11px] text-[#858585] uppercase tracking-[0.12em]">
+          SETUP PROCESS
+        </span>
+      </div>
+      <h2 class="font-display font-bold text-[clamp(36px,4vw,56px)] text-[#F4F4F4] tracking-[-0.02em] uppercase leading-[1.0] mb-4">
         Live in under 30 minutes.
       </h2>
+      <p class="font-mono text-[14px] text-[#858585] uppercase tracking-[0.12em]">
+        From CSV import to printed QR code — in a single session.
+      </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {steps.map((step) => (
-        <div class="card-featured relative flex flex-col items-center md:items-start text-center md:text-left">
-          <!-- Watermark Number -->
-          <div class="absolute top-4 right-4 font-display font-bold text-4xl text-surface-3 opacity-30 pointer-events-none">
-            {step.num}
-          </div>
+    <!-- Steps Grid -->
+    <div class="steps-grid">
+      {steps.map((step, index) => (
+        <>
+          <div class="step-card">
+            <!-- Watermark -->
+            <div class="step-watermark">{step.num}</div>
+            
+            <div class="relative z-10 flex flex-col h-full">
+              <!-- Icon -->
+              <div class="mb-4">
+                <step.icon size={24} style={{ color: step.color }} />
+              </div>
 
-          <!-- Icon Circle -->
-          <div class="w-12 h-12 rounded-none bg-surface-1 border border-border-default flex items-center justify-center mb-6">
-            <step.icon size={24} class={step.iconColor} />
+              <!-- Content -->
+              <h3 class="font-display font-semibold text-[14px] text-[#F4F4F4] uppercase tracking-[0.04em] mt-4">
+                {step.title}
+              </h3>
+              <p class="font-mono text-[12px] text-[#858585] leading-[1.6] mt-2">
+                {step.body}
+              </p>
+              
+              <!-- Time -->
+              <div class="mt-auto pt-4">
+                <span class="font-mono text-[10px] text-[#FF3B30] uppercase tracking-[0.12em]">
+                  {step.time}
+                </span>
+              </div>
+            </div>
           </div>
-
-          <h3 class="font-display font-semibold text-white uppercase tracking-[0.12em] text-[var(--text-card-title)] mb-4">
-            {step.title}
-          </h3>
-          <p class="font-mono text-[13px] text-metal uppercase tracking-[0.12em] leading-relaxed">
-            {step.body}
-          </p>
-        </div>
+          
+          {index < steps.length - 1 && (
+            <div class="step-connector">→</div>
+          )}
+        </>
       ))}
     </div>
 
-    <!-- Time Estimate Row -->
-    <div class="mt-16 pt-8 border-t border-border-subtle flex justify-center">
-      <div class="font-mono text-[11px] text-metal uppercase tracking-[0.12em] flex flex-wrap justify-center gap-x-6 gap-y-2">
+    <!-- Bottom Time Bar -->
+    <div class="time-bar">
+      <div class="font-mono text-[11px] text-[#858585] uppercase tracking-[0.12em] flex flex-wrap justify-center gap-x-6 gap-y-2">
         {steps.map((step, index) => (
           <div class="flex items-center gap-2">
-            <span>STEP {step.num}: {step.time}</span>
-            {index !== steps.length - 1 && <span class="hidden md:inline opacity-30">·</span>}
+            <span>STEP {step.num}: <span class="text-[#F4F4F4]">{step.time}</span></span>
+            {index !== steps.length - 1 && <span class="opacity-30">·</span>}
           </div>
         ))}
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .steps-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: #333333; /* Mobile: visible 1px border between steps */
+  }
+
+  @media (min-width: 1024px) {
+    .steps-grid {
+      grid-template-columns: 1fr 40px 1fr 40px 1fr 40px 1fr;
+      background: transparent;
+      gap: 0;
+    }
+  }
+
+  .step-card {
+    background: #111111;
+    border: 1px solid #333333;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 1024px) {
+    .step-card {
+      border: 1px solid #333333;
+    }
+  }
+
+  .step-watermark {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 72px;
+    color: #1A1A1A;
+    line-height: 1;
+    user-select: none;
+    z-index: 0;
+  }
+
+  .step-connector {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #333333;
+  }
+
+  @media (min-width: 1024px) {
+    .step-connector {
+      display: flex;
+    }
+  }
+
+  .time-bar {
+    margin-top: 40px;
+    background: #0D0D0D;
+    border: 1px solid #222222;
+    padding: 16px 32px;
+  }
+</style>
