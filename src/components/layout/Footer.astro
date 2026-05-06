@@ -1,60 +1,202 @@
 ---
-import Badge from '../shared/Badge.astro';
-
-const currentYear = 2026;
 ---
 
-<footer class="section-container bg-surface-1 border-t border-border-subtle pt-20 pb-12">
+<footer class="site-footer">
   <div class="container-inner">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
-      <!-- Col 1: Brand -->
-      <div>
-        <a href="/" class="relative inline-flex items-center group mb-6">
-          <span class="font-display font-bold text-xl tracking-tighter text-white uppercase">PASSR</span>
-          <div class="absolute -top-1 -right-2 w-1.5 h-1.5 bg-signal rounded-full"></div>
+
+    <!-- Row 1: 3 columns -->
+    <div class="footer-top">
+
+      <!-- Col 1: Wordmark + tagline -->
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <span class="footer-logo-text">PASSR</span>
+          <span class="footer-logo-dot"></span>
         </a>
-        <p class="font-mono text-[11px] text-metal uppercase leading-relaxed tracking-[0.12em] max-w-[200px]">
-          Digital Passport Infrastructure for global industrial supply chains.
+        <p class="footer-tagline">
+          Digital Product Passport Infrastructure
         </p>
       </div>
 
       <!-- Col 2: Links -->
-      <div class="grid grid-cols-2 gap-8">
-        <nav class="flex flex-col gap-4">
-          <a href="/product" class="font-mono text-[11px] text-metal hover:text-white transition-colors uppercase tracking-[0.12em]">Product</a>
-          <a href="/pricing" class="font-mono text-[11px] text-metal hover:text-white transition-colors uppercase tracking-[0.12em]">Pricing</a>
-          <a href="/docs" class="font-mono text-[11px] text-metal hover:text-white transition-colors uppercase tracking-[0.12em]">Docs</a>
-        </nav>
-        <nav class="flex flex-col gap-4">
-          <a href="/legal/privacy" class="font-mono text-[11px] text-metal hover:text-white transition-colors uppercase tracking-[0.12em]">Privacy Policy</a>
-          <a href="/legal/terms" class="font-mono text-[11px] text-metal hover:text-white transition-colors uppercase tracking-[0.12em]">Terms of Service</a>
-          <a href="/legal/dpa" class="font-mono text-[11px] text-metal hover:text-white transition-colors uppercase tracking-[0.12em]">DPA</a>
-        </nav>
-      </div>
+      <nav class="footer-links">
+        <a href="/product"       class="footer-link">Product</a>
+        <a href="/pricing"       class="footer-link">Pricing</a>
+        <a href="/legal/privacy" class="footer-link">Privacy</a>
+        <a href="/legal/terms"   class="footer-link">Terms</a>
+        <a href="/legal/dpa"     class="footer-link">DPA</a>
+      </nav>
 
-      <!-- Col 3: Compliance -->
-      <div class="flex flex-col gap-6 items-start md:items-end">
-        <div class="flex flex-col items-start md:items-end gap-2">
-          <span class="font-mono text-[11px] text-metal uppercase tracking-[0.12em] mb-1">Compliance Status</span>
-          <Badge label="● SYSTEMS OPERATIONAL" color="verified" variant="outline" />
-          <div class="font-mono text-[11px] text-metal uppercase tracking-[0.12em] mt-2 flex items-center gap-2">
-            <span>EU GDPR COMPLIANT</span>
-            <div class="w-1 h-1 bg-metal rounded-full"></div>
-            <span>ISO 27001</span>
-          </div>
+      <!-- Col 3: Status + badges -->
+      <div class="footer-status">
+        <div class="status-operational">
+          <span class="status-dot"></span>ALL SYSTEMS OPERATIONAL
         </div>
+        <div class="status-badge">EU GDPR COMPLIANT</div>
+        <div class="status-badge">GS1 DIGITAL LINK CERTIFIED</div>
       </div>
+
     </div>
 
-    <!-- Bottom Bar -->
-    <div class="pt-8 border-t border-border-subtle flex justify-between items-center">
-      <p class="font-mono text-[11px] text-metal uppercase tracking-[0.12em]">
-        © {currentYear} Passr. All rights reserved.
-      </p>
-      <div class="flex gap-6">
-        <a href="https://twitter.com/passr" class="text-metal hover:text-white transition-colors font-mono text-[11px] uppercase tracking-[0.12em]">X / Twitter</a>
-        <a href="https://linkedin.com/company/passr" class="text-metal hover:text-white transition-colors font-mono text-[11px] uppercase tracking-[0.12em]">LinkedIn</a>
-      </div>
+    <!-- Row 2: Bottom bar -->
+    <div class="footer-bottom">
+      <span class="footer-copy">
+        © 2026 Passr — Hisako Technologies OÜ, Estonia
+      </span>
+      <a href="mailto:hello@passr.eu" class="footer-email">hello@passr.eu</a>
     </div>
+
   </div>
 </footer>
+
+<style>
+  .site-footer {
+    background: #0A0A0A;
+    border-top: 1px solid #1A1A1A;
+    padding: 48px 0;
+  }
+
+  /* Row 1 */
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+    padding-bottom: 32px;
+  }
+
+  /* Brand */
+  .footer-brand { display: flex; flex-direction: column; gap: 10px; }
+
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .footer-logo-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #F4F4F4;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+
+  .footer-logo-dot {
+    width: 6px;
+    height: 6px;
+    background: #FF3B30;
+    border-radius: 50%;
+    margin-left: 3px;
+    margin-bottom: 6px;
+  }
+
+  .footer-tagline {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: #383838;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+  }
+
+  /* Links */
+  .footer-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    align-content: flex-start;
+  }
+
+  .footer-link {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    color: #585858;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: color 100ms ease;
+  }
+
+  .footer-link:hover { color: #F4F4F4; }
+
+  /* Status */
+  .footer-status {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+  }
+
+  .status-operational {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: #22C55E;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .status-dot {
+    width: 5px;
+    height: 5px;
+    background: #22C55E;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .status-badge {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    color: #383838;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Row 2 */
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #1A1A1A;
+    padding-top: 24px;
+  }
+
+  .footer-copy,
+  .footer-email {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: #2A2A2A;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  .footer-email:hover { color: #585858; }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .footer-top {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .footer-links {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+    }
+
+    .footer-status { align-items: flex-start; }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+</style>
