@@ -1,0 +1,557 @@
+---
+import { Building2, Factory, Smartphone, RefreshCw, Shield } from '@lucide/astro';
+
+const nodes = [
+  {
+    id: 'brands',
+    icon: Building2,
+    subdomain: 'app.passr.eu',
+    name: 'BRANDS',
+    role: 'Create passports, manage compliance, generate QR codes',
+    tag: 'PAYING CLIENT',
+    flowLabel: 'PASSPORT DATA',
+  },
+  {
+    id: 'suppliers',
+    icon: Factory,
+    subdomain: 'supplier.passr.eu',
+    name: 'SUPPLIERS',
+    role: 'Upload lab reports, certify materials, attach data to SKUs',
+    tag: 'DATA SOURCE',
+    flowLabel: 'CERTIFICATIONS',
+  },
+  {
+    id: 'consumers',
+    icon: Smartphone,
+    subdomain: 'verify.passr.eu',
+    name: 'CONSUMERS',
+    role: 'Scan QR to view materials, certifications, care instructions',
+    tag: 'END USER',
+    flowLabel: 'QR SCAN',
+  },
+  {
+    id: 'recyclers',
+    icon: RefreshCw,
+    subdomain: 'recycler.passr.eu',
+    name: 'RECYCLERS',
+    role: 'Access disassembly specs, hazardous material data',
+    tag: 'END OF LIFE',
+    flowLabel: 'TEARDOWN SPECS',
+  },
+  {
+    id: 'customs',
+    icon: Shield,
+    subdomain: 'API / verify.passr.eu',
+    name: 'EU CUSTOMS',
+    role: 'Machine-to-machine validation at EU borders',
+    tag: 'ENFORCER',
+    flowLabel: 'COMPLIANCE API',
+  },
+];
+
+const domainPills = [
+  'app.passr.eu',
+  'supplier.passr.eu',
+  'verify.passr.eu',
+  'recycler.passr.eu',
+  'passr.eu',
+];
+---
+
+<section id="ecosystem" class="ecosystem-section">
+  <div class="container-inner">
+
+    <!-- Section Header -->
+    <div class="eco-header">
+      <span class="eco-eyebrow">THE PASSR ECOSYSTEM</span>
+      <h2 class="eco-headline">
+        One infrastructure.<br />
+        Five stakeholders. <span class="text-signal">Zero gaps.</span>
+      </h2>
+      <p class="eco-sub">
+        Passr connects every party in the product compliance chain —
+        from raw material supplier to end-of-life recycler.
+      </p>
+    </div>
+
+    <!-- ── DESKTOP DIAGRAM ── -->
+    <div class="diagram-desktop">
+
+      <!-- Connecting Lines (drawn behind everything) -->
+      <!-- Top (Brands): from center (450,280) to (450,80) → -90deg, ~200px -->
+      <div class="spoke spoke-top">
+        <span class="flow-label">PASSPORT DATA</span>
+      </div>
+      <!-- Right (Suppliers): to (~816,200) → angle ~-9deg, ~375px -->
+      <div class="spoke spoke-right">
+        <span class="flow-label">CERTIFICATIONS</span>
+      </div>
+      <!-- Bottom-right (Consumers): to (~770,460) → angle ~30deg, ~355px -->
+      <div class="spoke spoke-br">
+        <span class="flow-label">QR SCAN</span>
+      </div>
+      <!-- Bottom-left (Recyclers): to (~130,460) → angle ~150deg, ~355px -->
+      <div class="spoke spoke-bl">
+        <span class="flow-label">TEARDOWN SPECS</span>
+      </div>
+      <!-- Left (Customs): to (~84,200) → angle ~-171deg, ~375px -->
+      <div class="spoke spoke-left">
+        <span class="flow-label">COMPLIANCE API</span>
+      </div>
+
+      <!-- CENTER HUB NODE -->
+      <div class="hub-card">
+        <div class="hub-logo">
+          <span class="hub-p">P</span><span class="hub-dot-logo"></span><span>ASSR</span>
+        </div>
+        <div class="hub-sub">DPP INFRASTRUCTURE</div>
+        <div class="hub-pills">
+          {domainPills.map(p => (
+            <div class="hub-pill">{p}</div>
+          ))}
+        </div>
+      </div>
+
+      <!-- TOP: BRANDS -->
+      <div class="node-card node-top">
+        <div class="node-header">
+          <Building2 size={16} class="node-icon" />
+          <span class="node-subdomain">app.passr.eu</span>
+        </div>
+        <div class="node-name">BRANDS</div>
+        <div class="node-role">Create passports, manage compliance, generate QR codes</div>
+        <div class="node-tag">PAYING CLIENT</div>
+      </div>
+
+      <!-- RIGHT: SUPPLIERS -->
+      <div class="node-card node-right">
+        <div class="node-header">
+          <Factory size={16} class="node-icon" />
+          <span class="node-subdomain">supplier.passr.eu</span>
+        </div>
+        <div class="node-name">SUPPLIERS</div>
+        <div class="node-role">Upload lab reports, certify materials, attach data to SKUs</div>
+        <div class="node-tag">DATA SOURCE</div>
+      </div>
+
+      <!-- BOTTOM RIGHT: CONSUMERS -->
+      <div class="node-card node-br">
+        <div class="node-header">
+          <Smartphone size={16} class="node-icon" />
+          <span class="node-subdomain">verify.passr.eu</span>
+        </div>
+        <div class="node-name">CONSUMERS</div>
+        <div class="node-role">Scan QR to view materials, certifications, care instructions</div>
+        <div class="node-tag">END USER</div>
+      </div>
+
+      <!-- BOTTOM LEFT: RECYCLERS -->
+      <div class="node-card node-bl">
+        <div class="node-header">
+          <RefreshCw size={16} class="node-icon" />
+          <span class="node-subdomain">recycler.passr.eu</span>
+        </div>
+        <div class="node-name">RECYCLERS</div>
+        <div class="node-role">Access disassembly specs, hazardous material data</div>
+        <div class="node-tag">END OF LIFE</div>
+      </div>
+
+      <!-- LEFT: CUSTOMS -->
+      <div class="node-card node-left">
+        <div class="node-header">
+          <Shield size={16} class="node-icon" />
+          <span class="node-subdomain">API / verify.passr.eu</span>
+        </div>
+        <div class="node-name">EU CUSTOMS</div>
+        <div class="node-role">Machine-to-machine validation at EU borders</div>
+        <div class="node-tag">ENFORCER</div>
+      </div>
+
+    </div>
+
+    <!-- ── MOBILE LIST ── -->
+    <div class="diagram-mobile">
+      <!-- Hub header card -->
+      <div class="mobile-hub">
+        <div class="hub-logo">
+          <span class="hub-p">P</span><span class="hub-dot-logo"></span><span>ASSR</span>
+        </div>
+        <div class="hub-sub">DPP INFRASTRUCTURE</div>
+      </div>
+
+      <!-- Vertical line + stacked nodes -->
+      <div class="mobile-nodes">
+        {nodes.map((node) => (
+          <div class="mobile-node-card">
+            <div class="node-header">
+              <node.icon size={16} class="node-icon" />
+              <span class="node-subdomain">{node.subdomain}</span>
+            </div>
+            <div class="node-name">{node.name}</div>
+            <div class="node-role">{node.role}</div>
+            <div class="node-tag">{node.tag}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- ── STAT CARDS ── -->
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="stat-number">5</div>
+        <div class="stat-label">STAKEHOLDER PORTALS</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number stat-red">2028</div>
+        <div class="stat-label">EU ENFORCEMENT DEADLINE</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">GS1</div>
+        <div class="stat-label">DIGITAL LINK STANDARD</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .ecosystem-section {
+    background: #111111;
+    border-top: 1px solid #1A1A1A;
+    border-bottom: 1px solid #1A1A1A;
+    padding: 120px 0;
+    overflow: hidden;
+  }
+
+  .text-signal { color: #FF3B30; }
+
+  /* ── HEADER ── */
+  .eco-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .eco-eyebrow {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: #585858;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .eco-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 4vw, 48px);
+    color: #F4F4F4;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .eco-sub {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    color: #585858;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── DESKTOP DIAGRAM ── */
+  .diagram-desktop {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    height: 560px;
+  }
+
+  /* ── HUB CARD ── */
+  .hub-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #0A0A0A;
+    border: 1px solid #FF3B30;
+    padding: 28px 36px;
+    text-align: center;
+    width: 200px;
+    z-index: 10;
+  }
+
+  .hub-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #F4F4F4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .hub-p { color: #F4F4F4; }
+
+  .hub-dot-logo {
+    width: 6px;
+    height: 6px;
+    background: #FF3B30;
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 8px;
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+
+  .hub-sub {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    color: #585858;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+  }
+
+  .hub-pills {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 16px;
+  }
+
+  .hub-pill {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 9px;
+    color: #383838;
+    padding: 2px 6px;
+    border: 1px solid #2A2A2A;
+    text-align: center;
+    text-transform: lowercase;
+  }
+
+  /* ── NODE CARDS ── */
+  .node-card {
+    position: absolute;
+    background: #0F0F0F;
+    border: 1px solid #2A2A2A;
+    padding: 20px 24px;
+    width: 168px;
+    z-index: 10;
+    transition: all 150ms ease;
+  }
+
+  .node-card:hover {
+    border-color: #3A3A3A;
+    background: #141414;
+  }
+
+  /* Positions */
+  .node-top    { top: 0%;    left: 50%; transform: translateX(-50%); }
+  .node-right  { top: 22%;  right: 0%; }
+  .node-br     { bottom: 2%; right: 6%; }
+  .node-bl     { bottom: 2%; left: 6%; }
+  .node-left   { top: 22%;  left: 0%; }
+
+  .node-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .node-icon { color: #585858; flex-shrink: 0; }
+
+  .node-subdomain {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 9px;
+    color: #FF3B30;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+  }
+
+  .node-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: #F4F4F4;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 8px;
+  }
+
+  .node-role {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: #585858;
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+
+  .node-tag {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 9px;
+    color: #2A2A2A;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-top: 1px solid #1A1A1A;
+    margin-top: 12px;
+    padding-top: 8px;
+  }
+
+  /* ── CONNECTING SPOKES ── */
+  /*
+   * Hub center: (450px, 280px) in the 900x560 container
+   * Node card centers (approx):
+   *   Top:   (450, 80)  → dy=-200, dx=0    → angle=-90deg,  len=200px
+   *   Right: (816, 212) → dy=-68,  dx=366  → angle≈-10.5deg,len=373px
+   *   BR:    (762, 478) → dy=198,  dx=312  → angle≈32.4deg, len=369px
+   *   BL:    (138, 478) → dy=198,  dx=-312 → angle≈147.6deg,len=369px
+   *   Left:  (84,  212) → dy=-68,  dx=-366 → angle≈190.5deg,len=373px
+   *
+   * Line origin: absolute from hub center (450px, 280px)
+   * transform-origin: 0px center (left edge of the line)
+   */
+
+  .spoke {
+    position: absolute;
+    top: 280px;
+    left: 450px;
+    height: 1px;
+    border-top: 1px dashed #1E1E1E;
+    transform-origin: 0px center;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Top (Brands) */
+  .spoke-top {
+    width: 200px;
+    transform: rotate(-90deg);
+  }
+
+  /* Right (Suppliers) */
+  .spoke-right {
+    width: 373px;
+    transform: rotate(-10.5deg);
+  }
+
+  /* Bottom-right (Consumers) */
+  .spoke-br {
+    width: 369px;
+    transform: rotate(32.4deg);
+  }
+
+  /* Bottom-left (Recyclers) */
+  .spoke-bl {
+    width: 369px;
+    transform: rotate(147.6deg);
+  }
+
+  /* Left (Customs) */
+  .spoke-left {
+    width: 373px;
+    transform: rotate(190.5deg);
+  }
+
+  /* Flow Labels on spokes */
+  .flow-label {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg);
+    background: #0F0F0F;
+    border: 1px solid #1E1E1E;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 9px;
+    color: #383838;
+    padding: 2px 8px;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  /* Rotate labels back to horizontal for readability */
+  .spoke-top    .flow-label { transform: translateX(-50%) rotate(90deg); }
+  .spoke-right  .flow-label { transform: translateX(-50%) rotate(10.5deg); }
+  .spoke-br     .flow-label { transform: translateX(-50%) rotate(-32.4deg); }
+  .spoke-bl     .flow-label { transform: translateX(-50%) rotate(-147.6deg); }
+  .spoke-left   .flow-label { transform: translateX(-50%) rotate(-190.5deg); }
+
+  /* ── MOBILE ── */
+  .diagram-mobile { display: none; }
+
+  @media (max-width: 767px) {
+    .diagram-desktop { display: none; }
+    .diagram-mobile  { display: block; }
+
+    .mobile-hub {
+      background: #0A0A0A;
+      border: 1px solid #FF3B30;
+      padding: 20px 24px;
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    .mobile-nodes {
+      border-left: 1px dashed #1E1E1E;
+      margin-left: 24px;
+      padding-left: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .mobile-node-card {
+      background: #0F0F0F;
+      border: 1px solid #2A2A2A;
+      padding: 20px 24px;
+      width: 100%;
+    }
+  }
+
+  /* ── STAT CARDS ── */
+  .stat-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: #1E1E1E;
+    margin-top: 64px;
+  }
+
+  .stat-card {
+    background: #0A0A0A;
+    border: 1px solid #1E1E1E;
+    padding: 24px 32px;
+  }
+
+  .stat-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: #F4F4F4;
+    line-height: 1;
+  }
+
+  .stat-red { color: #FF3B30; }
+
+  .stat-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: #585858;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 767px) {
+    .stat-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

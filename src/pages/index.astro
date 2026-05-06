@@ -1,26 +1,16 @@
 ---
-import Marketing from '../layouts/Marketing.astro';
-import Hero from '../components/sections/Hero.astro';
-import Stats from '../components/sections/Stats.astro';
-import Problem from '../components/sections/Problem.astro';
-import Features from '../components/sections/Features.astro';
-import Regulation from '../components/sections/Regulation.astro';
-import HowItWorks from '../components/sections/HowItWorks.astro';
-import PassportPreview from '../components/sections/PassportPreview.astro';
-import CTA from '../components/sections/CTA.astro';
+export const prerender = true;
+import BaseLayout from '../layouts/Marketing.astro'
+import Hero from '../components/sections/Hero.astro'
+import Ecosystem from '../components/sections/Ecosystem.astro'
+import FinalCTA from '../components/sections/FinalCTA.astro'
 ---
 
-<Marketing 
-	title="Industrial-Grade Digital Passports" 
-	description="Passr enables businesses to issue, manage, and verify digital passports with unmatched security and precise industrial clarity.">
-	
-	<Hero />
-	<Stats />
-	<Regulation />
-	<Problem />
-	<Features />
-	<HowItWorks />
-	<PassportPreview />
-	<CTA />
-
-</Marketing>
+<BaseLayout 
+  title="Passr — Digital Product Passport Infrastructure" 
+  description="EU ESPR compliant Digital Product Passports for outdoor and activewear brands. GS1 certified. Live in days."
+>
+  <Hero />
+  <Ecosystem />
+  <FinalCTA />
+</BaseLayout>

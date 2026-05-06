@@ -1,0 +1,275 @@
+---
+---
+
+<section id="waitlist" class="finalcta-section">
+  <div class="finalcta-inner">
+
+    <!-- Eyebrow -->
+    <div class="cta-eyebrow">EARLY ACCESS</div>
+
+    <!-- Headline -->
+    <h2 class="cta-headline">
+      THE 2028 DEADLINE<br />
+      <span class="text-signal">IS CONFIRMED.</span>
+    </h2>
+
+    <!-- Sub -->
+    <p class="cta-sub">
+      Join outdoor brands building their compliance infrastructure now.
+      GS1-compliant passports. EU data residency. Full data portability.
+    </p>
+
+    <!-- Form -->
+    <div id="finalcta-form-container" class="form-container">
+      <form id="finalcta-form" class="cta-form" novalidate>
+        <input
+          id="finalcta-brand"
+          type="text"
+          name="brand"
+          required
+          autocomplete="organization"
+          placeholder="Brand or company name"
+          class="cta-input input-brand"
+        />
+        <input
+          id="finalcta-email"
+          type="email"
+          name="email"
+          required
+          autocomplete="email"
+          placeholder="brand@yourcompany.com"
+          class="cta-input input-email"
+        />
+        <button type="submit" id="finalcta-submit" class="cta-submit">
+          REQUEST EARLY ACCESS
+        </button>
+      </form>
+
+      <p id="finalcta-error" class="cta-error" aria-live="polite"></p>
+    </div>
+
+    <!-- Trust line -->
+    <p class="cta-trust">
+      EU DATA RESIDENCY
+      <span class="sep">·</span>
+      CANCEL ANYTIME
+      <span class="sep">·</span>
+      FULL DATA EXPORT
+    </p>
+
+  </div>
+</section>
+
+<style>
+  .finalcta-section {
+    background: #0A0A0A;
+    border-top: 2px solid #FF3B30;
+    padding: 120px 0;
+  }
+
+  .finalcta-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 48px;
+    text-align: center;
+  }
+
+  .text-signal { color: #FF3B30; }
+
+  .cta-eyebrow {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: #FF3B30;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 24px;
+  }
+
+  .cta-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(40px, 5.5vw, 72px);
+    line-height: 0.95;
+    color: #F4F4F4;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-sub {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    color: #585858;
+    line-height: 1.8;
+    margin-top: 24px;
+  }
+
+  /* Form block */
+  .form-container {
+    margin-top: 48px;
+  }
+
+  .cta-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cta-input {
+    width: 100%;
+    height: 52px;
+    background: #0F0F0F;
+    border: 1px solid #2A2A2A;
+    color: #F4F4F4;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    padding: 0 20px;
+    border-radius: 0;
+    outline: none;
+    transition: border-color 120ms ease;
+    box-sizing: border-box;
+  }
+
+  .cta-input::placeholder { color: #2A2A2A; }
+  .cta-input:focus { border-color: #3A3A3A; }
+
+  /* Seamless stacking — remove bottom border from brand, top border from email */
+  .input-brand { border-bottom-color: #1A1A1A; }
+  .input-email  { border-top: none; }
+
+  .cta-submit {
+    width: 100%;
+    height: 52px;
+    background: #FF3B30;
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background 100ms ease;
+    margin-top: 1px; /* 1px gap = visible separator */
+  }
+
+  .cta-submit:hover   { background: #E0342A; }
+  .cta-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  /* Trust line */
+  .cta-trust {
+    margin-top: 20px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: #2A2A2A;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .sep { color: #1A1A1A; margin: 0 8px; }
+
+  /* Error message */
+  .cta-error {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    color: #FF3B30;
+    margin-top: 12px;
+    min-height: 18px;
+  }
+
+  /* Success state (injected by JS) */
+  .success-card {
+    border: 1px solid #22C55E;
+    padding: 32px;
+    text-align: center;
+  }
+
+  .success-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .success-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #22C55E;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .success-body {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    color: #585858;
+    margin-top: 8px;
+    line-height: 1.7;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .finalcta-section { padding: 80px 0; }
+    .finalcta-inner   { padding: 0 24px; }
+  }
+</style>
+
+<script>
+  const form    = document.getElementById('finalcta-form') as HTMLFormElement | null;
+  const submit  = document.getElementById('finalcta-submit') as HTMLButtonElement | null;
+  const errorEl = document.getElementById('finalcta-error');
+  const container = document.getElementById('finalcta-form-container');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!submit || !errorEl || !container) return;
+
+    const brand = (form.elements.namedItem('brand') as HTMLInputElement)?.value?.trim();
+    const email = (form.elements.namedItem('email') as HTMLInputElement)?.value?.trim();
+
+    if (!brand || !email) {
+      errorEl.textContent = 'Please fill in all fields.';
+      return;
+    }
+
+    submit.disabled = true;
+    submit.textContent = 'TRANSMITTING...';
+    errorEl.textContent = '';
+
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ brand, email }),
+      });
+
+      if (res.ok) {
+        container.innerHTML = `
+          <div class="success-card">
+            <div class="success-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                   stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <div class="success-title">ACCESS REQUESTED</div>
+            <div class="success-body">
+              We'll be in touch shortly.<br />
+              A confirmation has been sent to ${email}.
+            </div>
+          </div>
+        `;
+      } else {
+        const data = await res.json().catch(() => ({}));
+        errorEl.textContent = data?.error || 'Something went wrong. Please try again.';
+        submit.disabled = false;
+        submit.textContent = 'REQUEST EARLY ACCESS';
+      }
+    } catch {
+      errorEl.textContent = 'Something went wrong. Please try again.';
+      submit.disabled = false;
+      submit.textContent = 'REQUEST EARLY ACCESS';
+    }
+  });
+</script>
