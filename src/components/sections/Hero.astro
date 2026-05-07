@@ -6,16 +6,6 @@ import { ChevronDown } from '@lucide/astro';
   <!-- Background Grid -->
   <div class="hero-background"></div>
 
-  <!-- Announcement Strip — kept dark for urgency contrast -->
-  <div class="announcement-strip">
-    <div class="flex items-center gap-3">
-      <div class="announcement-dot"></div>
-      <span class="announcement-text">EU ESPR TEXTILE ENFORCEMENT DEADLINE: 2028</span>
-    </div>
-    <span class="announcement-separator">·</span>
-    <span class="announcement-cta">IS YOUR BRAND COMPLIANT?</span>
-  </div>
-
   <!-- Main Content -->
   <div class="hero-content">
     <!-- Eyebrow -->
@@ -82,7 +72,7 @@ import { ChevronDown } from '@lucide/astro';
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 0 24px;
+    padding: 180px 24px 80px 24px; /* Increased top padding to account for fixed header + strip */
   }
 
   /* Dark grid lines on light background */
@@ -96,52 +86,6 @@ import { ChevronDown } from '@lucide/astro';
     z-index: 0;
   }
 
-  /* Announcement Strip — dark band for urgency */
-  .announcement-strip {
-    position: absolute;
-    top: 64px;
-    left: 0;
-    right: 0;
-    height: 36px;
-    background: #0A0A0A;
-    border-bottom: 1px solid #1A1A1A;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    z-index: 10;
-  }
-
-  .announcement-dot {
-    width: 6px;
-    height: 6px;
-    background: #FF3B30;
-    border-radius: 50%;
-    animation: blink 1.4s step-end infinite;
-  }
-
-  .announcement-text {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 11px;
-    color: #F4F4F4;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .announcement-separator { color: #3A3A3A; }
-
-  .announcement-cta {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 11px;
-    color: #FF3B30;
-    text-transform: uppercase;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-
   /* Main Content */
   .hero-content {
     position: relative;
@@ -149,7 +93,6 @@ import { ChevronDown } from '@lucide/astro';
     max-width: 900px;
     width: 100%;
     text-align: center;
-    padding-top: 40px;
   }
 
   .hero-eyebrow {
@@ -306,6 +249,7 @@ import { ChevronDown } from '@lucide/astro';
 
   /* Mobile */
   @media (max-width: 767px) {
+    .hero-section { padding-top: 140px; }
     .headline-line { font-size: clamp(40px, 10vw, 60px); }
     .hero-subheadline { font-size: 13px; }
     .hero-cta-row { flex-direction: column; width: 100%; }

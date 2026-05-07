@@ -7,6 +7,19 @@ const navLinks = [
 ];
 ---
 
+<!-- Announcement Strip -->
+<div id="announcement-strip" class="announcement-strip">
+  <div class="strip-content">
+    <span class="blink-dot"></span>
+    <span class="strip-text">EU ESPR TEXTILE ENFORCEMENT DEADLINE: 2028</span>
+    <span class="strip-separator">·</span>
+    <span class="strip-cta">IS YOUR BRAND COMPLIANT?</span>
+  </div>
+  <button id="strip-close" class="strip-close" aria-label="Dismiss announcement">
+    ✕
+  </button>
+</div>
+
 <header id="site-header" class="header-main">
   <div class="container-inner h-full flex items-center justify-between">
     <!-- Logo -->
@@ -53,6 +66,65 @@ const navLinks = [
 </header>
 
 <style>
+  /* ── Announcement Strip ── */
+  .announcement-strip {
+    width: 100%;
+    height: 36px;
+    background: #0A0A0A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 101;
+    overflow: hidden;
+  }
+
+  .strip-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .blink-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #FF3B30;
+    flex-shrink: 0;
+    animation: blink 1.4s step-end infinite;
+  }
+
+  .strip-text { color: #858585; }
+  .strip-separator { color: #333333; }
+  .strip-cta { color: #FF3B30; cursor: pointer; }
+
+  .strip-close {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #444444;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px 8px;
+    font-family: 'Roboto Mono', monospace;
+    transition: color 100ms;
+  }
+
+  .strip-close:hover { color: #858585; }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* ── Main Nav ── */
   .header-main {
     height: 64px;
     background: rgba(244, 244, 244, 0.95);
@@ -63,7 +135,8 @@ const navLinks = [
     left: 0;
     right: 0;
     z-index: 100;
-    transition: border-color 200ms ease;
+    margin-top: 36px; /* Offset for strip */
+    transition: border-color 200ms ease, margin-top 200ms ease;
   }
 
   .header-main.scrolled {
@@ -140,32 +213,35 @@ const navLinks = [
     border-bottom: 1px solid #E0E0E0;
     padding: 24px;
     z-index: 99;
+    transition: top 200ms ease;
   }
-
-  .mobile-link {
-    display: block;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    color: #585858;
-    padding: 14px 0;
-    border-bottom: 1px solid #F4F4F4;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    transition: color 100ms ease;
-  }
-
-  .mobile-link:last-of-type { border-bottom: none; }
-  .mobile-link:hover { color: #0A0A0A; }
 </style>
 
 <script>
+  const strip = document.getElementById('announcement-strip');
+  const closeBtn = document.getElementById('strip-close');
   const header = document.getElementById('site-header');
   const toggle = document.getElementById('menu-toggle');
   const nav    = document.getElementById('mobile-nav');
   const menuIcon  = document.getElementById('menu-icon');
   const closeIcon = document.getElementById('close-icon');
+
+  // Check dismissal state
+  if (sessionStorage.getItem('strip-dismissed') === 'true') {
+    if (strip) strip.style.display = 'none';
+    if (header) header.style.marginTop = '0px';
+    if (nav) nav.style.top = '64px';
+  }
+
+  closeBtn?.addEventListener('click', () => {
+    if (!strip || !header) return;
+    strip.style.transition = 'height 200ms ease, opacity 200ms ease';
+    strip.style.opacity = '0';
+    strip.style.height = '0';
+    header.style.marginTop = '0px';
+    if (nav) nav.style.top = '64px';
+    sessionStorage.setItem('strip-dismissed', 'true');
+  });
 
   window.addEventListener('scroll', () => {
     header?.classList.toggle('scrolled', window.scrollY > 80);
