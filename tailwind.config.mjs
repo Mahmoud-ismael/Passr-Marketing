@@ -22,8 +22,8 @@ export default {
         },
       },
       fontFamily: {
-        display: ['Space Grotesk', 'Helvetica Neue', 'Arial', 'sans-serif'],
-        mono:    ['Roboto Mono', 'Courier New', 'monospace'],
+        display: ["'Space Grotesk'", "'Helvetica Neue'", "Arial", "sans-serif"],
+        mono:    ["'Roboto Mono'", "'Courier New'", "monospace"],
       },
       borderRadius: {
         DEFAULT: '2px',

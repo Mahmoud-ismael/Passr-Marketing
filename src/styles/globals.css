@@ -42,8 +42,8 @@
   --text-muted:        #909090;
 
   /* 3. Typography */
-  --font-display:  'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
-  --font-mono:     'Roboto Mono', 'Courier New', monospace;
+  --font-display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Roboto Mono', 'Courier New', monospace;
 
   /* Type Scale */
   --text-eyebrow: 11px;
