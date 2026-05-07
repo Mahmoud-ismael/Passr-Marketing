@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Roboto+Mono:wght@400&display=swap');
+/* Redundant @import removed, loading via link in Base.astro */
 
 :root {
   /* 2. Color Palette — "Technical Noir" */
@@ -97,7 +97,7 @@
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    padding-top: 64px;
+    padding-top: 100px; /* 36px strip + 64px header */
   }
 
   h1, h2, h3, h4, h5, h6 {
