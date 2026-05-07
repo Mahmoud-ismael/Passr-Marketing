@@ -62,7 +62,7 @@
 
 <style>
   .finalcta-section {
-    background: #0A0A0A;
+    background: #F4F4F4;
     border-top: 2px solid #FF3B30;
     padding: 120px 0;
   }
@@ -90,7 +90,7 @@
     font-weight: 700;
     font-size: clamp(40px, 5.5vw, 72px);
     line-height: 0.95;
-    color: #F4F4F4;
+    color: #0A0A0A;
     text-transform: uppercase;
     letter-spacing: -0.02em;
   }
@@ -117,9 +117,9 @@
   .cta-input {
     width: 100%;
     height: 52px;
-    background: #0F0F0F;
-    border: 1px solid #2A2A2A;
-    color: #F4F4F4;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    color: #0A0A0A;
     font-family: 'Roboto Mono', monospace;
     font-size: 14px;
     padding: 0 20px;
@@ -129,11 +129,11 @@
     box-sizing: border-box;
   }
 
-  .cta-input::placeholder { color: #2A2A2A; }
-  .cta-input:focus { border-color: #3A3A3A; }
+  .cta-input::placeholder { color: #909090; }
+  .cta-input:focus { border-color: #C8C8C8; }
 
   /* Seamless stacking — remove bottom border from brand, top border from email */
-  .input-brand { border-bottom-color: #1A1A1A; }
+  .input-brand { border-bottom-color: #EFEFEF; }
   .input-email  { border-top: none; }
 
   .cta-submit {
@@ -147,10 +147,11 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     border: none;
-    border-radius: 0;
+    border-radius: 2px; /* Slight radius for button specifically */
     cursor: pointer;
     transition: background 100ms ease;
-    margin-top: 1px; /* 1px gap = visible separator */
+    margin-top: 12px;
+    box-shadow: 0 1px 3px rgba(255, 59, 48, 0.3);
   }
 
   .cta-submit:hover   { background: #E0342A; }
@@ -161,12 +162,12 @@
     margin-top: 20px;
     font-family: 'Roboto Mono', monospace;
     font-size: 11px;
-    color: #2A2A2A;
+    color: #909090;
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
 
-  .sep { color: #1A1A1A; margin: 0 8px; }
+  .sep { color: #E0E0E0; margin: 0 8px; }
 
   /* Error message */
   .cta-error {
@@ -180,6 +181,7 @@
   /* Success state (injected by JS) */
   .success-card {
     border: 1px solid #22C55E;
+    background: #FFFFFF;
     padding: 32px;
     text-align: center;
   }

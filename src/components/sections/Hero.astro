@@ -6,7 +6,7 @@ import { ChevronDown } from '@lucide/astro';
   <!-- Background Grid -->
   <div class="hero-background"></div>
 
-  <!-- Announcement Strip -->
+  <!-- Announcement Strip — kept dark for urgency contrast -->
   <div class="announcement-strip">
     <div class="flex items-center gap-3">
       <div class="announcement-dot"></div>
@@ -77,7 +77,7 @@ import { ChevronDown } from '@lucide/astro';
   .hero-section {
     position: relative;
     min-height: 100vh;
-    background: #0A0A0A;
+    background: #F4F4F4;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,24 +85,25 @@ import { ChevronDown } from '@lucide/astro';
     padding: 0 24px;
   }
 
+  /* Dark grid lines on light background */
   .hero-background {
     position: absolute;
     inset: 0;
     background-image: 
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
     background-size: 48px 48px;
     z-index: 0;
   }
 
-  /* Announcement Strip */
+  /* Announcement Strip — dark band for urgency */
   .announcement-strip {
     position: absolute;
-    top: 64px; /* Assuming 64px nav height */
+    top: 64px;
     left: 0;
     right: 0;
     height: 36px;
-    background: #0D0D0D;
+    background: #0A0A0A;
     border-bottom: 1px solid #1A1A1A;
     display: flex;
     align-items: center;
@@ -122,14 +123,12 @@ import { ChevronDown } from '@lucide/astro';
   .announcement-text {
     font-family: 'Roboto Mono', monospace;
     font-size: 11px;
-    color: #585858;
+    color: #F4F4F4;
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
 
-  .announcement-separator {
-    color: #2A2A2A;
-  }
+  .announcement-separator { color: #3A3A3A; }
 
   .announcement-cta {
     font-family: 'Roboto Mono', monospace;
@@ -150,19 +149,19 @@ import { ChevronDown } from '@lucide/astro';
     max-width: 900px;
     width: 100%;
     text-align: center;
-    padding-top: 40px; /* Offset for announcement strip */
+    padding-top: 40px;
   }
 
   .hero-eyebrow {
     font-family: 'Roboto Mono', monospace;
     font-size: 11px;
-    color: #585858;
+    color: #909090;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    border-left: 1px solid #585858;
+    border-left: 1px solid #909090;
     padding-left: 12px;
     margin: 0 auto 32px auto;
-    display: table; /* Centers the block with border-left */
+    display: table;
   }
 
   .hero-headline {
@@ -177,19 +176,17 @@ import { ChevronDown } from '@lucide/astro';
     font-size: clamp(52px, 7.5vw, 96px);
     line-height: 0.93;
     letter-spacing: -0.03em;
-    color: #F4F4F4;
+    color: #0A0A0A;
     text-transform: uppercase;
     opacity: 0;
     animation: fadeUp 0.5s ease forwards;
   }
 
-  .text-signal {
-    color: #FF3B30;
-  }
+  .text-signal { color: #FF3B30; }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   .hero-subheadline {
@@ -223,12 +220,11 @@ import { ChevronDown } from '@lucide/astro';
     padding: 16px 36px;
     border-radius: 2px;
     text-decoration: none;
+    box-shadow: 0 1px 3px rgba(255,59,48,0.3);
     transition: background 100ms ease;
   }
 
-  .btn-primary:hover {
-    background: #E0342A;
-  }
+  .btn-primary:hover { background: #E0342A; }
 
   .btn-secondary {
     background: transparent;
@@ -239,14 +235,14 @@ import { ChevronDown } from '@lucide/astro';
     letter-spacing: 0.06em;
     text-transform: uppercase;
     padding: 16px 24px;
-    border: 1px solid #2A2A2A;
+    border: 1px solid #C8C8C8;
     border-radius: 2px;
     text-decoration: none;
     transition: all 100ms ease;
   }
 
   .btn-secondary:hover {
-    color: #F4F4F4;
+    color: #0A0A0A;
     border-color: #585858;
   }
 
@@ -261,7 +257,7 @@ import { ChevronDown } from '@lucide/astro';
   .trust-signal {
     font-family: 'Roboto Mono', monospace;
     font-size: 11px;
-    color: #383838;
+    color: #909090;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     display: flex;
@@ -293,13 +289,13 @@ import { ChevronDown } from '@lucide/astro';
   .scroll-text {
     font-family: 'Roboto Mono', monospace;
     font-size: 10px;
-    color: #2A2A2A;
+    color: #C8C8C8;
     text-transform: uppercase;
     letter-spacing: 0.1em;
   }
 
   .scroll-icon {
-    color: #2A2A2A;
+    color: #C8C8C8;
     animation: bounce 2s ease-in-out infinite;
   }
 
@@ -308,31 +304,13 @@ import { ChevronDown } from '@lucide/astro';
     50% { transform: translateY(6px); }
   }
 
-  /* Mobile Overrides */
+  /* Mobile */
   @media (max-width: 767px) {
-    .hero-headline {
-      font-size: clamp(40px, 10vw, 60px);
-    }
-    .headline-line {
-      font-size: inherit;
-    }
-    .hero-subheadline {
-      font-size: 13px;
-    }
-    .hero-cta-row {
-      flex-direction: column;
-      width: 100%;
-    }
-    .btn-primary, .btn-secondary {
-      width: 100%;
-      text-align: center;
-    }
-    .hero-trust-signals {
-      gap: 16px;
-      justify-content: flex-start;
-    }
-    .trust-signal {
-      width: calc(50% - 16px);
-    }
+    .headline-line { font-size: clamp(40px, 10vw, 60px); }
+    .hero-subheadline { font-size: 13px; }
+    .hero-cta-row { flex-direction: column; width: 100%; }
+    .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+    .hero-trust-signals { gap: 16px; justify-content: flex-start; }
+    .trust-signal { width: calc(50% - 16px); }
   }
 </style>
