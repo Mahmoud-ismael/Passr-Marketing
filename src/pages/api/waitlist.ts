@@ -19,7 +19,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Send via Resend
     const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
-    const NOTIFY_EMAIL   = import.meta.env.NOTIFY_EMAIL ?? 'momo178797@gmail.com';
+    const NOTIFY_EMAIL = import.meta.env.NOTIFY_EMAIL ?? 'momo178797@gmail.com';
 
     if (!RESEND_API_KEY) {
       console.error('[waitlist] RESEND_API_KEY is not set');
@@ -37,7 +37,7 @@ export const POST: APIRoute = async ({ request }) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Passr Waitlist <noreply@passr.eu>',
+        from: 'Passr Waitlist <hello@notify.passr.eu>',
         to: [NOTIFY_EMAIL],
         subject: `[Waitlist] New signup: ${brandName}`,
         html: `
@@ -56,7 +56,7 @@ export const POST: APIRoute = async ({ request }) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Passr <noreply@passr.eu>',
+        from: 'Passr <hello@notify.passr.eu>',
         to: [email],
         subject: 'Passr Early Access — Request Received',
         html: `
