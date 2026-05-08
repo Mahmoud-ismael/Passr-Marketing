@@ -15,7 +15,7 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const brandName = (typeof brand === 'string' ? brand.trim() : '') || 'Unknown Brand';
+    const brandName = (typeof brand === 'string' ? brand.trim() : '') || 'Early Adopter';
 
     // Send via Resend
     const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
@@ -37,7 +37,7 @@ export const POST: APIRoute = async ({ request }) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Passr Waitlist <hello@notify.passr.eu>',
+        from: 'Passr Alerts <onboarding@resend.dev>',
         to: [NOTIFY_EMAIL],
         subject: `[Waitlist] New signup: ${brandName}`,
         html: `
@@ -56,14 +56,89 @@ export const POST: APIRoute = async ({ request }) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Passr <hello@notify.passr.eu>',
+        from: 'Passr <onboarding@resend.dev>',
         to: [email],
-        subject: 'Passr Early Access — Request Received',
+        subject: 'Access confirmed. Welcome to Passr.',
         html: `
-          <p>Hi ${brandName},</p>
-          <p>We've received your early access request for Passr.</p>
-          <p>We'll be in touch shortly with next steps.</p>
-          <p>— The Passr Team</p>
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          </head>
+          <body style="margin: 0; padding: 0; background-color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px; color: #0A0A0A;">
+              
+              <!-- Logo -->
+              <div style="margin-bottom: 32px;">
+                <img src="https://passr.eu/brand-assets/passr-logo-optimized.webp" alt="Passr" width="120" style="display: block; border: 0;" />
+              </div>
+
+              <!-- Headline -->
+              <h1 style="font-size: 28px; font-weight: 800; color: #FF3B30; text-transform: uppercase; letter-spacing: -0.02em; margin: 0 0 24px 0;">
+                ACCESS CONFIRMED.
+              </h1>
+
+              <!-- Body Text -->
+              <p style="font-size: 16px; line-height: 1.6; color: #333333; margin: 0 0 32px 0;">
+                You're on the early access list for Passr — the Digital Product Passport infrastructure built for outdoor and activewear brands. EU ESPR compliant. GS1 certified. Live in days.
+              </p>
+
+              <!-- Callout Card -->
+              <div style="background-color: #F8F8F8; border-left: 4px solid #FF3B30; padding: 32px; margin: 32px 0;">
+                <h2 style="font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #0A0A0A; margin: 0 0 20px 0;">
+                  EARLY ACCESS STATUS: ACTIVE
+                </h2>
+                
+                <table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse: collapse;">
+                  <tr>
+                    <td style="padding: 12px 0; border-bottom: 1px solid #F0F0F0; font-size: 14px; color: #0A0A0A;">
+                      <strong>GS1 QR Generator</strong>
+                    </td>
+                    <td style="padding: 12px 0; border-bottom: 1px solid #F0F0F0; font-size: 14px; color: #585858; text-align: right;">
+                      Test before public release
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0; border-bottom: 1px solid #F0F0F0; font-size: 14px; color: #0A0A0A;">
+                      <strong>PFAS Compliance Locker</strong>
+                    </td>
+                    <td style="padding: 12px 0; border-bottom: 1px solid #F0F0F0; font-size: 14px; color: #585858; text-align: right;">
+                      Priority access on launch
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0; font-size: 14px; color: #0A0A0A;">
+                      <strong>Early Adopter Status</strong>
+                    </td>
+                    <td style="padding: 12px 0; font-size: 14px; color: #585858; text-align: right;">
+                      First 100 brands featured
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <p style="font-size: 15px; line-height: 1.6; color: #333333; margin: 32px 0 32px 0;">
+                We'll be in touch before launch with your access details.
+              </p>
+
+              <p style="font-size: 15px; font-weight: 700; color: #0A0A0A; margin: 0;">
+                The Passr Team
+              </p>
+
+              <!-- Footer -->
+              <div style="margin-top: 60px; padding-top: 32px; border-top: 1px solid #F0F0F0; text-align: center;">
+                <p style="font-family: Arial, sans-serif; font-size: 11px; color: #AAAAAA; line-height: 1.8; margin: 0;">
+                  Passr — Hisako Technologies OÜ, Estonia<br />
+                  You received this because you requested early access at <a href="https://passr.eu" style="color: #AAAAAA; text-decoration: underline;">passr.eu</a><br />
+                  <a href="https://passr.eu/legal/privacy" style="color: #AAAAAA; text-decoration: underline;">Privacy Policy</a> | 
+                  <a href="https://passr.eu/api/unsubscribe?email=${encodeURIComponent(email)}" style="color: #AAAAAA; text-decoration: underline;">Unsubscribe</a>
+                </p>
+              </div>
+
+            </div>
+          </body>
+          </html>
         `,
       }),
     });
