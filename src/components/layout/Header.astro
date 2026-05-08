@@ -128,12 +128,12 @@ const navLinks = [
 
   /* ── Main Nav ── */
   .header-main {
-    height: 64px;
+    height: 80px;
     background: rgba(244, 244, 244, 0.95);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid #E0E0E0;
     position: fixed;
-    top: 36px; /* Explicit offset by strip height */
+    top: 36px;
     left: 0;
     right: 0;
     z-index: 900;
@@ -152,7 +152,7 @@ const navLinks = [
   }
 
   .logo-img {
-    height: 42px;
+    height: 60px;
     width: auto;
     display: block;
   }
@@ -195,7 +195,7 @@ const navLinks = [
 
   .mobile-drawer {
     position: fixed;
-    top: 100px; /* 36 + 64 */
+    top: 116px; /* 36 + 80 */
     left: 0;
     right: 0;
     background: #FFFFFF;
@@ -218,9 +218,9 @@ const navLinks = [
   function handleDismiss() {
     if (strip) strip.style.display = 'none';
     if (header) header.style.top = '0px';
-    if (nav) nav.style.top = '64px';
+    if (nav) nav.style.top = '80px';
     // Also adjust body padding to prevent large gap
-    document.body.style.paddingTop = '64px';
+    document.body.style.paddingTop = '80px';
   }
 
   // Check dismissal state
@@ -237,8 +237,8 @@ const navLinks = [
       strip.style.display = 'none';
     }, 200);
     header.style.top = '0px';
-    if (nav) nav.style.top = '64px';
-    document.body.style.paddingTop = '64px';
+    if (nav) nav.style.top = '80px';
+    document.body.style.paddingTop = '80px';
     sessionStorage.setItem('strip-dismissed', 'true');
   });
 
