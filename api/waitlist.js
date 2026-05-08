@@ -31,19 +31,11 @@ export default async function handler(req, res) {
   const resend = new Resend(apiKey);
 
   // 1. Add to Resend Audience
-  const { error: contactError } = await resend.contacts.create({
+  await resend.contacts.create({
     email,
     firstName: brand || '',
     audienceId: AUDIENCE_ID,
   });
-
-  if (contactError) {
-    console.error('Resend Contact Error:', contactError);
-    // If already subscribed, still send back success
-    if (contactError.name !== 'validation_error') {
-      // Continue anyway, maybe they just want the email again
-    }
-  }
 
   // 2. Send confirmation email
   const fromEmail = process.env.WAITLIST_FROM_EMAIL || 'onboarding@resend.dev';
@@ -63,9 +55,15 @@ export default async function handler(req, res) {
       <body style="margin: 0; padding: 0; background-color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
         <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px; color: #0A0A0A;">
           
-          <!-- Logo -->
+          <!-- Logo (High-Performance Stylized Text) -->
           <div style="margin-bottom: 32px;">
-            <img src="https://passr.eu/brand-assets/passr-logo-optimized.webp" alt="Passr" width="120" style="display: block; border: 0;" />
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 28px; font-weight: 800; color: #0A0A0A; letter-spacing: -0.02em; text-transform: uppercase;">
+                  PASSR<span style="color: #FF3B30;">.</span>
+                </td>
+              </tr>
+            </table>
           </div>
 
           <!-- Headline -->
