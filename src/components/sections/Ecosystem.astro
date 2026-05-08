@@ -1,10 +1,10 @@
 ---
-import { ShoppingBag, Shield, Factory, RefreshCw, Smartphone, Check } from '@lucide/astro';
+import { Shirt, ShieldCheck, Factory, Wrench, Smartphone, Check } from '@lucide/astro';
 
 const nodes = [
   {
     id: 'brands',
-    icon: ShoppingBag,
+    icon: Shirt,
     name: 'BRANDS',
     description: 'Manage product lines, oversee compliance, generate QR codes.',
     subdomain: 'app.passr.eu',
@@ -18,7 +18,7 @@ const nodes = [
   },
   {
     id: 'regulators',
-    icon: Shield,
+    icon: ShieldCheck,
     name: 'REGULATORS',
     description: 'Automated machine-to-machine validation at EU borders.',
     subdomain: 'verify.passr.eu',
@@ -47,7 +47,7 @@ const nodes = [
   },
   {
     id: 'recyclers',
-    icon: RefreshCw,
+    icon: Wrench,
     name: 'RECYCLERS',
     description: 'Access industrial teardown specs, hazardous material data.',
     subdomain: 'recycler.passr.eu',
