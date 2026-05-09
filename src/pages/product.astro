@@ -1,0 +1,229 @@
+---
+export const prerender = true;
+import Marketing from '../layouts/Marketing.astro';
+import SectionLabel from '../components/shared/SectionLabel.astro';
+import FinalCTA from '../components/sections/FinalCTA.astro';
+import { CheckCircle } from '@lucide/astro';
+
+const modules = [
+  {
+    number: '01',
+    name: 'THE COMMAND CENTER',
+    title: 'Full compliance visibility. One screen.',
+    description: 'A real-time dashboard showing compliance status across your entire SKU catalog. Traffic-light alerts flag missing PFAS reports before customs does.',
+    features: [
+      'Red/green traffic light per SKU',
+      'Bulk CSV import from Shopify or ERP',
+      'Role-based access (Admin, Editor, Viewer)',
+      'Passport scan analytics',
+      'Regulatory update feed'
+    ],
+    mockUI: `
+COMMAND CENTER_SKU_STATUS
+--------------------------
+SKU_204  [ ● COMPLIANT ]
+SKU_205  [ ● MISSING PFAS ]
+SKU_206  [ ● COMPLIANT ]
+SKU_207  [ ● EXPIRING ]
+
+TOTAL SKUs: 1,240
+COMPLIANCE SCORE: 98%
+    `
+  },
+  {
+    number: '02',
+    name: 'THE COMPLIANCE LOCKER',
+    title: 'Structured compliance data. Not a Dropbox folder.',
+    description: 'Replace scattered PDFs with structured, queryable compliance records. PFAS toggles, material composition trees, origin mapping — all in one place.',
+    features: [
+      'PFAS chemical safety slot with lab report storage',
+      'Material composition builder (validates to 100%)',
+      'Supply chain origin mapper',
+      'Severe wet weather exemption logic',
+      'Certificate expiry tracking with automated alerts'
+    ],
+    mockUI: `
+CONTAINS PFAS?  [ NO  ✓ ]
+FLUORINE PPM    [ 0.0    ]
+LAB REPORT      [ SGS_report.pdf ↗ ]
+EXPIRY DATE     [ 2027-01-15     ]
+STATUS          [ ● VERIFIED     ]
+
+MATERIAL TREE:
+- RECYCLED PES [ 88% ]
+- ELASTANE     [ 12% ]
+    `
+  },
+  {
+    number: '03',
+    name: 'THE GS1 QR GENERATOR',
+    title: 'Print once. Update forever.',
+    description: 'Generate GS1 Digital Link compliant QR codes for every SKU. The physical QR code never changes — the compliance data behind it updates in real time.',
+    features: [
+      'GS1 Digital Link standard (verify.passr.eu/01/{GTIN})',
+      'Batch ZIP export (SVG + PNG at print resolution)',
+      'Named by SKU for packaging designers',
+      'Dynamic redirect — update data without reprinting'
+    ],
+    mockUI: `
+QR_GEN_SKU_204_GTIN
+--------------------------
+FORMAT: GS1 DIGITAL LINK
+RESOLVABLE: YES
+DESTINATION: verify.passr.eu
+
+EXPORT_READY:
+[ DOWNLOAD SVG ] [ 300DPI ]
+[ DOWNLOAD PNG ] [ 600DPI ]
+    `
+  },
+  {
+    number: '04',
+    name: 'THE PUBLIC PASSPORT',
+    title: 'Your brand. Your passport. Passr in the footnote.',
+    description: 'The consumer-facing page is white-label. Your logo dominates. Passr branding is footer-only. Verified compliance badges link directly to lab report PDFs.',
+    features: [
+      'White-label with brand logo',
+      'Verified PFAS-Free badge (linked to actual PDF)',
+      'Material composition, origin, care & repair tabs',
+      'Password-gated recycler disassembly access',
+      'Passport scan analytics'
+    ],
+    mockUI: `
+BRAND_IDENTITY_OVERRIDE:
+LOGO: [ BRAND_LOGO.SVG ]
+PRIMARY_COLOR: [ #000000 ]
+
+PASSPORT_STRUCTURE:
+- TAB: COMPLIANCE
+- TAB: MATERIALS
+- TAB: REPAIR
+- TAB: ORIGIN
+    `
+  },
+  {
+    number: '05',
+    name: 'THE DATA ESCROW',
+    title: 'Your compliance data belongs to you.',
+    description: 'One-click bulk download of every certificate and compliance record. If you cancel Passr, everything leaves with you. No lock-in. No hostage data.',
+    features: [
+      'Full archive ZIP (PDFs + JSON + CSV + manifest)',
+      'SHA-256 file hash verification',
+      'Weekly automated backup',
+      'EU data residency guaranteed'
+    ],
+    mockUI: `
+DATA_EXPORT_INITIATED
+--------------------------
+MANIFEST: manifest.json
+PDF_COUNT: 1,402
+CSV_EXPORT: product_catalog.csv
+JSON_EXPORT: raw_api_dump.json
+
+[ DOWNLOAD FULL ARCHIVE.ZIP ]
+SIZE: 2.4 GB
+    `
+  }
+];
+
+const complianceRows = [
+  { reg: 'EU ESPR (Ecodesign)', juris: 'European Union', status: 'Enforcement: 2028', coverage: '✓ FULL COVERAGE' },
+  { reg: 'French AGEC Law', juris: 'France', status: 'Active now', coverage: '✓ FULL COVERAGE' },
+  { reg: 'EU PFAS Restriction', juris: 'European Union', status: 'Phased 2026-2028', coverage: '✓ FULL COVERAGE' },
+  { reg: 'US PFAS (NY/CA)', juris: 'United States', status: 'Active 2025', coverage: '✓ LABELING LOGIC' },
+  { reg: 'GS1 Digital Link', juris: 'Global Standard', status: 'Active', coverage: '✓ CERTIFIED' },
+];
+---
+
+<Marketing 
+  title="Product Features — Everything Your Compliance Team Needs"
+  description="Explore the Passr platform. Five modules designed for outdoor and activewear brands to achieve EU ESPR, AGEC, and PFAS compliance.">
+  
+  <!-- Header -->
+  <header class="pt-[140px] pb-20 bg-[#F4F4F4]">
+    <div class="container mx-auto px-6 max-w-[1100px]">
+      <span class="font-mono text-[11px] text-[#909090] uppercase tracking-[0.2em] mb-8 block">THE PLATFORM</span>
+      <h1 class="font-display font-bold text-4xl lg:text-[64px] text-[#0A0A0A] tracking-tight uppercase leading-[1.05] mb-8">
+        Everything your compliance<br />
+        team needs. <span class="text-[#FF3B30]">Nothing they don't.</span>
+      </h1>
+      <p class="font-mono text-sm lg:text-[14px] text-[#585858] max-w-[520px] uppercase tracking-wider leading-relaxed">
+        Five modules. One dashboard. Complete EU ESPR, AGEC, and PFAS compliance for outdoor and activewear brands.
+      </p>
+    </div>
+  </header>
+
+  <!-- Modules -->
+  {modules.map((mod, index) => (
+    <section class:list={["py-32", index % 2 === 0 ? "bg-[#F4F4F4]" : "bg-[#FFFFFF]"]}>
+      <div class="container mx-auto px-6 max-w-[1100px]">
+        <div class:list={["flex flex-col lg:flex-row items-center gap-20", index % 2 !== 0 && "lg:flex-row-reverse"]}>
+          <!-- Text -->
+          <div class="w-full lg:w-1/2">
+            <span class="font-mono text-[11px] text-[#FF3B30] uppercase tracking-[0.2em] mb-4 block">MODULE {mod.number}</span>
+            <h2 class="font-display font-bold text-3xl text-[#0A0A0A] uppercase tracking-tight mb-6">
+              {mod.name}:<br />
+              <span class="text-[28px] opacity-80">{mod.title}</span>
+            </h2>
+            <p class="font-mono text-sm text-[#585858] uppercase tracking-wider leading-[1.7] mb-10">
+              {mod.description}
+            </p>
+            
+            <div class="space-y-4">
+              {mod.features.map(feature => (
+                <div class="flex items-start gap-3">
+                  <CheckCircle size={14} class="text-[#22C55E] mt-0.5 shrink-0" />
+                  <span class="font-mono text-[13px] text-[#585858] uppercase tracking-wider">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Card -->
+          <div class="w-full lg:w-1/2">
+            <div class="bg-white border border-[#E8E8E8] p-8 shadow-sm">
+              <pre class="font-mono text-[11px] lg:text-[12px] text-[#0A0A0A] leading-relaxed whitespace-pre-wrap">{mod.mockUI.trim()}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Compliance Coverage -->
+  <section class="py-32 bg-white">
+    <div class="container mx-auto px-6 max-w-[1100px]">
+      <div class="mb-16">
+        <SectionLabel label="REGULATORY SCOPE" class="mb-8" />
+        <h2 class="font-display font-bold text-3xl text-[#0A0A0A] tracking-tight uppercase">What regulations does Passr cover?</h2>
+      </div>
+
+      <div class="overflow-x-auto border border-[#E8E8E8]">
+        <table class="w-full border-collapse font-mono text-[12px] uppercase tracking-wider text-left min-w-[800px]">
+          <thead>
+            <tr class="bg-[#0A0A0A] text-[#F4F4F4]">
+              <th class="p-4 border-r border-[#333333]">REGULATION</th>
+              <th class="p-4 border-r border-[#333333]">JURISDICTION</th>
+              <th class="p-4 border-r border-[#333333]">STATUS</th>
+              <th class="p-4">PASSR COVERAGE</th>
+            </tr>
+          </thead>
+          <tbody>
+            {complianceRows.map((row, i) => (
+              <tr class:list={[i % 2 !== 0 ? "bg-[#FAFAFA]" : "bg-white"]}>
+                <td class="p-4 border-r border-[#E8E8E8] font-bold text-[#0A0A0A]">{row.reg}</td>
+                <td class="p-4 border-r border-[#E8E8E8] text-[#585858]">{row.juris}</td>
+                <td class="p-4 border-r border-[#E8E8E8] text-[#585858]">{row.status}</td>
+                <td class="p-4 text-[#22C55E] font-bold">{row.coverage}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <FinalCTA />
+
+</Marketing>
