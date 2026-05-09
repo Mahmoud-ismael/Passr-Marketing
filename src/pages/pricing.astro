@@ -93,27 +93,27 @@ const faqs = [
   description="Simple, transparent pricing for outdoor and activewear brands. EU data residency and GS1 compliance included as standard.">
   
   <!-- Header -->
-  <section class="pt-32 pb-20 bg-void">
+  <section class="pt-32 pb-20 bg-[#F4F4F4]">
     <div class="container mx-auto px-6 max-w-[1200px]">
       <SectionLabel label="TRANSPARENT PRICING" class="mb-8" />
-      <h1 class="font-display font-bold text-4xl lg:text-5xl text-white tracking-tight uppercase leading-[1.1] mb-6">
+      <h1 class="font-display font-bold text-4xl lg:text-5xl text-[#0A0A0A] tracking-tight uppercase leading-[1.1] mb-6">
         Priced for mid-market brands.<br />
         Not for enterprise budgets.
       </h1>
-      <p class="font-mono text-metal uppercase tracking-widest max-w-2xl leading-relaxed">
+      <p class="font-mono text-[#585858] uppercase tracking-widest max-w-2xl leading-relaxed">
         All plans include EU data residency, GS1-compliant passports, and full data portability.
       </p>
     </div>
   </section>
 
   <!-- Pricing Cards -->
-  <section class="pb-32 bg-void">
+  <section class="pb-32 bg-[#F4F4F4]">
     <div class="container mx-auto px-6 max-w-[1200px]">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         {plans.map((plan) => (
           <div class:list={[
-            "relative flex flex-col bg-surface-1 border p-10 pt-12",
-            plan.popular ? "border-signal" : "border-border-default"
+            "relative flex flex-col bg-white border p-10 pt-12",
+            plan.popular ? "border-[#FF3B30]" : "border-[#E8E8E8]"
           ]}>
             {plan.popular && (
               <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -122,26 +122,26 @@ const faqs = [
             )}
             
             <div class="mb-8">
-              <span class="font-mono text-[10px] text-metal uppercase tracking-[0.2em]">{plan.name}</span>
+              <span class="font-mono text-[10px] text-[#585858] uppercase tracking-[0.2em]">{plan.name}</span>
               <div class="mt-4 flex items-baseline gap-2">
-                <span class="font-display font-bold text-4xl text-white">{plan.price}</span>
-                <span class="font-mono text-metal text-sm">/MONTH</span>
+                <span class="font-display font-bold text-4xl text-[#0A0A0A]">{plan.price}</span>
+                <span class="font-mono text-[#585858] text-sm">/MONTH</span>
               </div>
             </div>
 
-            <div class="h-px bg-border-default w-full mb-8"></div>
+            <div class="h-px bg-[#F0F0F0] w-full mb-8"></div>
 
             <div class="flex-1 space-y-4 mb-10">
               {plan.features.map((feature) => (
-                <div class:list={["flex items-start gap-3", !feature.included && "opacity-40"]}>
+                <div class="flex items-start gap-3">
                   {feature.included ? (
-                    <CheckCircle size={16} class="text-verified mt-0.5 shrink-0" />
+                    <CheckCircle size={16} class="text-[#22C55E] mt-0.5 shrink-0" />
                   ) : (
-                    <XCircle size={16} class="text-metal mt-0.5 shrink-0" />
+                    <XCircle size={16} class="text-[#CCCCCC] mt-0.5 shrink-0" />
                   )}
                   <span class:list={[
                     "font-mono text-xs uppercase tracking-wider leading-relaxed",
-                    feature.included ? "text-white" : "text-metal line-through"
+                    feature.included ? "text-[#0A0A0A]" : "text-[#AAAAAA] line-through"
                   ]}>
                     {feature.label}
                   </span>
@@ -157,9 +157,9 @@ const faqs = [
       </div>
 
       <!-- Enterprise Row -->
-      <div class="bg-surface-1 border border-border-default p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        <p class="font-mono text-sm text-metal uppercase tracking-widest">
-          <span class="text-white font-bold">ENTERPRISE</span> — Custom pricing for brand groups and retailers.
+      <div class="bg-white border border-[#E8E8E8] p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <p class="font-mono text-sm text-[#585858] uppercase tracking-widest">
+          <span class="text-[#0A0A0A] font-bold">ENTERPRISE</span> — Custom pricing for brand groups and retailers.
         </p>
         <Button variant="ghost" href="/contact">
           CONTACT US <ArrowRight size={16} class="ml-2" />
@@ -169,28 +169,28 @@ const faqs = [
   </section>
 
   <!-- FAQ Section -->
-  <section class="py-32 bg-surface-1 border-t border-border-default">
+  <section class="py-32 bg-white border-t border-[#F0F0F0]">
     <div class="container mx-auto px-6 max-w-[800px]">
       <div class="mb-16">
         <SectionLabel label="QUESTIONS & PROTOCOLS" class="mb-8" />
-        <h2 class="font-display font-bold text-3xl text-white tracking-tight uppercase">Frequently Asked Questions</h2>
+        <h2 class="font-display font-bold text-3xl text-[#0A0A0A] tracking-tight uppercase">Frequently Asked Questions</h2>
       </div>
 
       <div class="space-y-4">
         {faqs.map((faq) => (
-          <details class="group bg-void border border-border-default open:border-metal transition-all duration-200">
+          <details class="group bg-white border border-[#F0F0F0] transition-all duration-200">
             <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
-              <span class="font-display font-semibold text-white uppercase tracking-widest text-sm">
+              <span class="font-display font-semibold text-[#0A0A0A] uppercase tracking-widest text-sm">
                 {faq.q}
               </span>
-              <span class="text-metal group-open:rotate-180 transition-transform duration-200">
+              <span class="text-[#585858] group-open:rotate-180 transition-transform duration-200">
                 <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2"/>
                 </svg>
               </span>
             </summary>
-            <div class="px-6 pb-6">
-              <p class="font-mono text-sm text-metal uppercase tracking-wider leading-relaxed">
+            <div class="px-6 pb-6 border-t border-[#F0F0F0] mt-[-1px] pt-6">
+              <p class="font-mono text-sm text-[#585858] uppercase tracking-wider leading-relaxed">
                 {faq.a}
               </p>
             </div>
