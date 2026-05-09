@@ -72,7 +72,7 @@ import { ChevronDown } from '@lucide/astro';
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 180px 24px 80px 24px; /* Increased top padding to account for fixed header + strip */
+    padding: 120px 24px 80px 24px; /* top = fixed header (80px) + 40px breathing room */
   }
 
   /* Dark grid lines on light background */
@@ -249,7 +249,7 @@ import { ChevronDown } from '@lucide/astro';
 
   /* Mobile */
   @media (max-width: 767px) {
-    .hero-section { padding-top: 140px; }
+    .hero-section { padding-top: 100px; }
     .headline-line { font-size: clamp(40px, 10vw, 60px); }
     .hero-subheadline { font-size: 13px; }
     .hero-cta-row { flex-direction: column; width: 100%; }
