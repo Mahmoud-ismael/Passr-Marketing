@@ -11,10 +11,6 @@ const nodes = [
     tag: 'PAYING CLIENT',
     pos: { top: '0px', left: '50%', transform: 'translateX(-50%)' },
     width: '220px',
-    pathId: 'path-brands',
-    d: 'M 500,350 L 500,200',
-    dots: [],
-    begin: '0s'
   },
   {
     id: 'regulators',
@@ -26,10 +22,6 @@ const nodes = [
     pos: { top: '240px', left: '0px' },
     width: '220px',
     apiBadge: true,
-    pathId: 'path-regulators',
-    d: 'M 420,380 L 320,380 L 320,350 L 220,350',
-    dots: [{x: 320, y: 380}, {x: 320, y: 350}],
-    begin: '0.4s'
   },
   {
     id: 'suppliers',
@@ -40,10 +32,6 @@ const nodes = [
     tag: 'DATA SOURCE',
     pos: { top: '240px', right: '0px' },
     width: '220px',
-    pathId: 'path-suppliers',
-    d: 'M 580,380 L 680,380 L 680,350 L 780,350',
-    dots: [{x: 680, y: 380}, {x: 680, y: 350}],
-    begin: '0.8s'
   },
   {
     id: 'recyclers',
@@ -54,10 +42,6 @@ const nodes = [
     tag: 'END OF LIFE',
     pos: { bottom: '0px', left: '60px' },
     width: '220px',
-    pathId: 'path-recyclers',
-    d: 'M 460,420 L 460,520 L 280,520 L 280,580',
-    dots: [{x: 460, y: 520}, {x: 280, y: 520}],
-    begin: '1.2s'
   },
   {
     id: 'consumers',
@@ -68,19 +52,7 @@ const nodes = [
     tag: 'END USER',
     pos: { bottom: '0px', right: '60px' },
     width: '220px',
-    pathId: 'path-consumers',
-    d: 'M 540,420 L 540,520 L 720,520 L 720,580',
-    dots: [{x: 540, y: 520}, {x: 720, y: 520}],
-    begin: '1.6s'
   }
-];
-
-const flowLabels = [
-  { text: 'PASSPORT DATA', style: 'top: 140px; left: 50%; transform: translateX(-50%)' },
-  { text: 'COMPLIANCE API', style: 'top: 360px; left: 260px' },
-  { text: 'CERTIFICATIONS', style: 'top: 360px; right: 260px' },
-  { text: 'TEARDOWN SPECS', style: 'bottom: 180px; left: 330px' },
-  { text: 'QR SCAN', style: 'bottom: 180px; right: 300px' }
 ];
 
 const stats = [
@@ -94,69 +66,54 @@ const stats = [
   <!-- Background Dotted Grid -->
   <div class="eco-grid-bg"></div>
 
-  <div class="container-inner relative z-10">
-    <!-- Section Header -->
-    <header class="eco-header">
-      <div class="eco-eyebrow">
+  <div class="container-inner relative" style="z-index:1">
+    <!-- ── FIX 1: Section Header ── -->
+    <div class="ecosystem-header">
+      <div class="ecosystem-eyebrow">
         <span class="eyebrow-bar"></span>
-        THE PASSR ECOSYSTEM
+        <span class="eyebrow-text">THE PASSR ECOSYSTEM</span>
       </div>
-      <h2 class="eco-headline">
-        One infrastructure.<br />
-        Five stakeholders.<br />
-        <span class="text-signal">Zero gaps.</span>
+      <h2 class="ecosystem-headline">
+        One infrastructure.<br>
+        Five stakeholders.<br>
+        <span class="headline-accent">Zero gaps.</span>
       </h2>
-      <p class="eco-subheadline">
-        Passr connects every party in the product compliance chain —<br />
+      <p class="ecosystem-sub">
+        Passr connects every party in the product compliance chain —
         from raw material supplier to end-of-life recycler.
       </p>
-    </header>
+    </div>
 
     <!-- ── DESKTOP DIAGRAM ── -->
     <div class="diagram-viewport hidden lg:block">
       <div class="diagram-container">
-        <!-- SVG Connections -->
-        <svg class="connections-svg" width="1000" height="760" viewBox="0 0 1000 760" fill="none" xmlns="http://www.w3.org/2000/svg">
-          {nodes.map(node => (
-            <path id={node.pathId} d={node.d} class="connector-path" />
-          ))}
 
-          <!-- Static Connection Dots at Bends -->
-          {nodes.flatMap(node => node.dots.map(dot => (
-            <circle cx={dot.x} cy={dot.y} r="4" fill="#FF3B30" />
-          )))}
-
-          <!-- Animated Particles -->
-          {nodes.map(node => (
-            <g>
-              <!-- Outbound -->
-              <circle r="3" fill="#FF3B30" opacity="0.9">
-                <animateMotion dur="2.5s" repeatCount="indefinite" calcMode="linear" begin={node.begin}>
-                  <mpath href={`#${node.pathId}`} />
-                </animateMotion>
-              </circle>
-              <!-- Inbound -->
-              <circle r="2.5" fill="#FF3B30" opacity="0.4">
-                <animateMotion dur="2.5s" repeatCount="indefinite" calcMode="linear" begin={node.begin} keyPoints="1;0" keyTimes="0;1">
-                  <mpath href={`#${node.pathId}`} />
-                </animateMotion>
-              </circle>
-            </g>
-          ))}
+        <!-- ── FIX 3 & 4: JS-drawn SVG connector layer ── -->
+        <svg class="connector-svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible">
         </svg>
 
-        <!-- Center Hub -->
-        <div class="center-hub">
-          <div class="hub-wordmark">
-            PASSR<span class="hub-dot">●</span>
-          </div>
-          <div class="hub-subtitle">THE CONNECTED DPP ECOSYSTEM</div>
-          <div class="hub-metadata">EU ESPR · GS1 DIGITAL LINK</div>
+        <!-- ── FIX 3: Flow label divs (positioned by JS) ── -->
+        <div id="label-node-brands" class="flow-label">PASSPORT DATA</div>
+        <div id="label-node-regulators" class="flow-label">COMPLIANCE API</div>
+        <div id="label-node-suppliers" class="flow-label">CERTIFICATIONS</div>
+        <div id="label-node-recyclers" class="flow-label">TEARDOWN SPECS</div>
+        <div id="label-node-consumers" class="flow-label">QR SCAN</div>
+
+        <!-- ── FIX 2: Center Hub (72px wordmark) ── -->
+        <div class="hub-center">
+          <div class="hub-wordmark">PASSR<span class="hub-dot">●</span></div>
+          <div class="hub-divider"></div>
+          <span class="hub-subtitle">THE CONNECTED DPP ECOSYSTEM</span>
+          <span class="hub-tag">EU ESPR · GS1 DIGITAL LINK</span>
         </div>
 
-        <!-- Stakeholder Cards -->
+        <!-- ── FIX 2 & 3: Stakeholder Cards with IDs ── -->
         {nodes.map(node => (
-          <div class="stakeholder-card" style={{...node.pos, width: node.width}}>
+          <div
+            id={`node-${node.id}`}
+            class="stakeholder-card"
+            style={{...node.pos, width: node.width}}
+          >
             <div class="card-top">
               <node.icon size={32} stroke-width={1.5} class="card-icon" />
               <div class="check-badge">
@@ -165,41 +122,29 @@ const stats = [
             </div>
             <h3 class="card-title">{node.name}</h3>
             <p class="card-desc">{node.description}</p>
-            <div class="card-bottom">
+            <!-- ── FIX 5: Card bottom row (no truncation) ── -->
+            <div class="card-bottom-row">
               <span class="card-subdomain">{node.subdomain}</span>
-              <div class="flex items-center gap-2 shrink-0">
+              <div style="display:flex;align-items:center;gap:4px;flex-shrink:0">
                 {node.apiBadge && <span class="api-badge">API</span>}
-                <span class="role-tag" title={node.tag}>{node.tag}</span>
+                <span class="card-tag">{node.tag}</span>
               </div>
             </div>
           </div>
         ))}
 
-        <!-- Data Flow Labels -->
-        {flowLabels.map(label => (
-          <div class="flow-label" style={label.style}>
-            {label.text}
-          </div>
-        ))}
       </div>
     </div>
 
     <!-- ── MOBILE LAYOUT ── -->
     <div class="lg:hidden mobile-layout">
-      <!-- Mobile Hub -->
       <div class="mobile-hub">
-        <div class="hub-wordmark text-white">
+        <div class="hub-wordmark-mobile">
           PASSR<span class="hub-dot">●</span>
         </div>
-        <div class="hub-metadata text-[#858585] mt-2">
-          EU ESPR COMPLIANT DPP INFRASTRUCTURE
-        </div>
+        <div class="hub-metadata-mobile">EU ESPR COMPLIANT DPP INFRASTRUCTURE</div>
       </div>
-
-      <!-- Vertical Connective Line -->
       <div class="mobile-connector-line"></div>
-
-      <!-- Mobile Cards -->
       <div class="mobile-cards-container">
         {nodes.map(node => (
           <div class="mobile-card">
@@ -211,9 +156,9 @@ const stats = [
             </div>
             <h3 class="card-title">{node.name}</h3>
             <p class="card-desc">{node.description}</p>
-            <div class="card-bottom">
+            <div class="card-bottom-row">
               <span class="card-subdomain">{node.subdomain}</span>
-              <span class="role-tag">{node.tag}</span>
+              <span class="card-tag">{node.tag}</span>
             </div>
           </div>
         ))}
@@ -224,7 +169,7 @@ const stats = [
     <div class="stat-grid">
       {stats.map(stat => (
         <div class="stat-item">
-          <div class={`stat-value ${stat.highlight ? 'text-signal' : 'text-[#0A0A0A]'}`}>
+          <div class={`stat-value ${stat.highlight ? 'stat-value-accent' : ''}`}>
             {stat.value}
           </div>
           <div class="stat-label">{stat.label}</div>
@@ -235,6 +180,7 @@ const stats = [
 </section>
 
 <style>
+  /* ── FIX 6: Section with dot grid texture ── */
   .eco-section {
     background: #F8F8F8;
     padding: 120px 0;
@@ -242,150 +188,154 @@ const stats = [
     position: relative;
   }
 
-  /* Dot Grid Background */
   .eco-grid-bg {
     position: absolute;
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background-image: radial-gradient(circle, #CCCCCC 1px, transparent 1px);
-    background-size: 28px 28px;
-    opacity: 0.5;
+    background-image: radial-gradient(circle, #C8C8C8 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.4;
   }
 
   .text-signal { color: #FF3B30; }
 
-  /* ── HEADER ── */
-  .eco-header {
-    max-width: 640px;
-    margin: 0 auto 72px auto;
+  /* ── FIX 1: Section Header ── */
+  .ecosystem-header {
     text-align: center;
+    max-width: 600px;
+    margin: 0 auto 80px auto;
+    position: relative;
+    z-index: 1;
   }
 
-  .eco-eyebrow {
+  .ecosystem-eyebrow {
     display: flex;
     align-items: center;
-    gap: 10px;
     justify-content: center;
-    margin-bottom: 16px;
-    font-family: 'Roboto Mono', monospace !important;
-    font-size: 11px;
-    color: #909090;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    gap: 10px;
+    margin-bottom: 20px;
   }
 
   .eyebrow-bar {
+    display: inline-block;
     width: 2px;
     height: 18px;
     background: #FF3B30;
+    flex-shrink: 0;
   }
 
-  .eco-headline {
-    font-family: 'Space Grotesk', sans-serif !important;
-    font-weight: 700 !important;
-    font-size: clamp(36px, 4vw, 52px);
-    color: #0A0A0A;
+  .eyebrow-text {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: #909090;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .ecosystem-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(36px, 4.5vw, 56px);
     line-height: 1.0;
+    color: #0A0A0A;
+    margin-bottom: 20px;
     text-transform: uppercase;
   }
 
-  .eco-subheadline {
-    margin-top: 16px;
+  .headline-accent {
+    color: #FF3B30;
+  }
+
+  .ecosystem-sub {
     font-family: 'Roboto Mono', monospace;
     font-size: 13px;
     color: #909090;
     line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto;
   }
 
   /* ── DIAGRAM ── */
   .diagram-viewport {
     margin-top: 40px;
+    position: relative;
+    z-index: 1;
   }
 
+  /* ── FIX 7: Diagram container positioning ── */
   .diagram-container {
     position: relative;
     width: 100%;
     max-width: 1000px;
     height: 760px;
     margin: 0 auto;
-  }
-
-  .connections-svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
     z-index: 1;
-    overflow: visible;
   }
 
-  .connector-path {
-    stroke: #CCCCCC;
-    stroke-width: 1.5;
-    fill: none;
-    stroke-dasharray: 5 4;
-  }
-
-  /* Center Hub */
-  .center-hub {
+  /* ── FIX 2: Center Hub ── */
+  .hub-center {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    z-index: 20;
-    min-width: 180px;
-    padding: 20px;
-    background: transparent;
+    z-index: 3;
+    min-width: 200px;
   }
 
   .hub-wordmark {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: 56px;
-    color: #0A0A0A;
-    letter-spacing: -0.025em;
+    font-size: 72px;
     line-height: 1;
+    letter-spacing: -0.03em;
+    color: #0A0A0A;
   }
 
   .hub-dot {
     color: #FF3B30;
-    font-size: 12px;
+    font-size: 14px;
     vertical-align: super;
-    margin-left: 3px;
+    margin-left: 4px;
+  }
+
+  .hub-divider {
+    width: 40px;
+    height: 1px;
+    background: #E0E0E0;
+    margin: 12px auto;
   }
 
   .hub-subtitle {
-    margin-top: 10px;
     font-family: 'Roboto Mono', monospace;
     font-size: 10px;
     color: #909090;
-    letter-spacing: 0.1em;
     text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 1.6;
     display: block;
   }
 
-  .hub-metadata {
-    margin-top: 4px;
+  .hub-tag {
     font-family: 'Roboto Mono', monospace;
     font-size: 9px;
-    color: #BBBBBB;
-    letter-spacing: 0.02em;
+    color: #CCCCCC;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
     display: block;
   }
 
-  /* Stakeholder Cards */
+  /* ── FIX 7: Stakeholder Cards z-index ── */
   .stakeholder-card {
     position: absolute;
     background: #FFFFFF;
     border: 1px solid #E8E8E8;
     border-radius: 2px;
     padding: 20px;
-    z-index: 30;
+    z-index: 3;
     transition: border-color 150ms ease;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     min-height: 200px;
@@ -403,9 +353,7 @@ const stats = [
     flex-shrink: 0;
   }
 
-  .card-icon {
-    color: #0A0A0A;
-  }
+  .card-icon { color: #0A0A0A; }
 
   .check-badge {
     width: 20px;
@@ -414,7 +362,7 @@ const stats = [
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0;
+    flex-shrink: 0;
   }
 
   .card-title {
@@ -441,15 +389,16 @@ const stats = [
     overflow: hidden;
   }
 
-  .card-bottom {
+  /* ── FIX 5: Card bottom row (no truncation) ── */
+  .card-bottom-row {
     border-top: 1px solid #F0F0F0;
     padding-top: 10px;
+    margin-top: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: auto;
+    gap: 6px;
     flex-wrap: nowrap;
-    gap: 8px;
     flex-shrink: 0;
   }
 
@@ -457,27 +406,24 @@ const stats = [
     font-family: 'Roboto Mono', monospace;
     font-size: 10px;
     color: #AAAAAA;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
     flex: 1;
     min-width: 0;
   }
 
-  .role-tag {
+  /* ── FIX 5: Tag — no max-width, no overflow hidden, smaller font ── */
+  .card-tag {
     font-family: 'Roboto Mono', monospace;
     font-size: 9px;
-    font-weight: 500;
     color: #FF3B30;
-    text-transform: uppercase;
-    background: #FFFFFF;
     border: 1px solid #FFE0DE;
-    padding: 2px 6px;
+    padding: 2px 5px;
     white-space: nowrap;
     flex-shrink: 0;
-    max-width: 80px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 
   .api-badge {
@@ -485,15 +431,16 @@ const stats = [
     font-size: 9px;
     color: #AAAAAA;
     border: 1px solid #E8E8E8;
-    padding: 2px 6px;
+    padding: 2px 5px;
     flex-shrink: 0;
+    white-space: nowrap;
   }
 
-  /* Flow Labels */
+  /* ── FIX 3 & 4: Flow Labels (positioned by JS) ── */
   .flow-label {
     position: absolute;
     background: #FFFFFF;
-    border: 1px solid #EBEBEB;
+    border: 1px solid #E8E8E8;
     padding: 3px 10px;
     font-family: 'Roboto Mono', monospace;
     font-size: 9px;
@@ -501,8 +448,11 @@ const stats = [
     text-transform: uppercase;
     letter-spacing: 0.06em;
     white-space: nowrap;
-    z-index: 40;
+    z-index: 4;
     pointer-events: none;
+    /* Hidden until JS positions them */
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
   /* ── STATS ── */
@@ -514,6 +464,8 @@ const stats = [
     background: #E8E8E8;
     border: 1px solid #E8E8E8;
     max-width: 1000px;
+    position: relative;
+    z-index: 1;
   }
 
   .stat-item {
@@ -529,7 +481,10 @@ const stats = [
     font-weight: 700;
     font-size: 44px;
     line-height: 1;
+    color: #0A0A0A;
   }
+
+  .stat-value-accent { color: #FF3B30 !important; }
 
   .stat-label {
     font-family: 'Roboto Mono', monospace;
@@ -543,6 +498,8 @@ const stats = [
   /* ── MOBILE ── */
   .mobile-layout {
     margin-top: 48px;
+    position: relative;
+    z-index: 1;
   }
 
   .mobile-hub {
@@ -551,6 +508,24 @@ const stats = [
     padding: 28px;
     text-align: center;
     border-radius: 2px;
+  }
+
+  .hub-wordmark-mobile {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    color: #FFFFFF;
+    letter-spacing: -0.025em;
+    line-height: 1;
+  }
+
+  .hub-metadata-mobile {
+    margin-top: 8px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 9px;
+    color: #858585;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 
   .mobile-connector-line {
@@ -584,3 +559,145 @@ const stats = [
     }
   }
 </style>
+
+<!-- ── FIX 3 & 4: JS-drawn connectors ── -->
+<script>
+  function drawConnectors() {
+    const container = document.querySelector('.diagram-container') as HTMLElement;
+    const svg = document.querySelector('.connector-svg') as unknown as SVGSVGElement;
+    const hub = document.querySelector('.hub-center') as HTMLElement;
+
+    if (!container || !svg || !hub) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const hubRect = hub.getBoundingClientRect();
+
+    // Hub center point (relative to container)
+    const hx = hubRect.left - containerRect.left + hubRect.width / 2;
+    const hy = hubRect.top - containerRect.top + hubRect.height / 2;
+
+    const nodes = [
+      { id: 'node-brands',     label: 'PASSPORT DATA',  edge: 'bottom' as const },
+      { id: 'node-regulators', label: 'COMPLIANCE API', edge: 'right'  as const },
+      { id: 'node-suppliers',  label: 'CERTIFICATIONS', edge: 'left'   as const },
+      { id: 'node-recyclers',  label: 'TEARDOWN SPECS', edge: 'top'    as const },
+      { id: 'node-consumers',  label: 'QR SCAN',        edge: 'top'    as const },
+    ];
+
+    // Clear existing paths
+    svg.innerHTML = '';
+
+    nodes.forEach((node, i) => {
+      const el = document.getElementById(node.id);
+      if (!el) return;
+
+      const r = el.getBoundingClientRect();
+
+      // Calculate card edge midpoint based on which edge faces center
+      let ex: number, ey: number;
+      switch (node.edge) {
+        case 'bottom':
+          ex = r.left - containerRect.left + r.width / 2;
+          ey = r.bottom - containerRect.top;
+          break;
+        case 'right':
+          ex = r.right - containerRect.left;
+          ey = r.top - containerRect.top + r.height / 2;
+          break;
+        case 'left':
+          ex = r.left - containerRect.left;
+          ey = r.top - containerRect.top + r.height / 2;
+          break;
+        case 'top':
+        default:
+          ex = r.left - containerRect.left + r.width / 2;
+          ey = r.top - containerRect.top;
+          break;
+      }
+
+      // Calculate hub edge point facing this node
+      const angle = Math.atan2(ey - hy, ex - hx);
+      const hubEdgeX = hx + Math.cos(angle) * 60;
+      const hubEdgeY = hy + Math.sin(angle) * 30;
+
+      // Create L-shaped path with one waypoint
+      let pathD: string;
+      if (node.edge === 'bottom' || node.edge === 'top') {
+        pathD = `M ${hubEdgeX},${hubEdgeY} L ${ex},${hubEdgeY} L ${ex},${ey}`;
+      } else {
+        pathD = `M ${hubEdgeX},${hubEdgeY} L ${hubEdgeX},${ey} L ${ex},${ey}`;
+      }
+
+      // Draw the path
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', pathD);
+      path.setAttribute('id', `path-${node.id}`);
+      path.setAttribute('stroke', '#CCCCCC');
+      path.setAttribute('stroke-width', '1.5');
+      path.setAttribute('stroke-dasharray', '5 4');
+      path.setAttribute('fill', 'none');
+      svg.appendChild(path);
+
+      // Add bend point dot (at first corner)
+      const pathLength = path.getTotalLength();
+      const cornerPt = path.getPointAtLength(pathLength * 0.5);
+
+      const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      dot.setAttribute('cx', String(cornerPt.x));
+      dot.setAttribute('cy', String(cornerPt.y));
+      dot.setAttribute('r', '4');
+      dot.setAttribute('fill', '#FF3B30');
+      svg.appendChild(dot);
+
+      // Animated outbound particle
+      const circle1 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle1.setAttribute('r', '3');
+      circle1.setAttribute('fill', '#FF3B30');
+      circle1.setAttribute('opacity', '0.9');
+      const anim1 = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
+      anim1.setAttribute('dur', '2.5s');
+      anim1.setAttribute('repeatCount', 'indefinite');
+      anim1.setAttribute('begin', `${i * 0.5}s`);
+      const mpath1 = document.createElementNS('http://www.w3.org/2000/svg', 'mpath');
+      mpath1.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `#path-${node.id}`);
+      anim1.appendChild(mpath1);
+      circle1.appendChild(anim1);
+      svg.appendChild(circle1);
+
+      // Animated inbound particle
+      const circle2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle2.setAttribute('r', '2.5');
+      circle2.setAttribute('fill', '#FF3B30');
+      circle2.setAttribute('opacity', '0.4');
+      const anim2 = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
+      anim2.setAttribute('dur', '2.5s');
+      anim2.setAttribute('repeatCount', 'indefinite');
+      anim2.setAttribute('begin', `${i * 0.5 + 1.25}s`);
+      anim2.setAttribute('keyPoints', '1;0');
+      anim2.setAttribute('keyTimes', '0;1');
+      anim2.setAttribute('calcMode', 'linear');
+      const mpath2 = document.createElementNS('http://www.w3.org/2000/svg', 'mpath');
+      mpath2.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `#path-${node.id}`);
+      anim2.appendChild(mpath2);
+      circle2.appendChild(anim2);
+      svg.appendChild(circle2);
+
+      // Position flow label at midpoint of path
+      const labelEl = document.getElementById(`label-${node.id}`);
+      if (labelEl) {
+        const midPoint = path.getPointAtLength(pathLength * 0.45);
+        labelEl.style.left = (midPoint.x - labelEl.offsetWidth / 2) + 'px';
+        labelEl.style.top = (midPoint.y - 12) + 'px';
+        labelEl.style.opacity = '1';
+      }
+    });
+  }
+
+  if (document.readyState === 'complete') {
+    setTimeout(drawConnectors, 150);
+  } else {
+    window.addEventListener('load', () => setTimeout(drawConnectors, 150));
+  }
+
+  window.addEventListener('resize', drawConnectors);
+</script>
