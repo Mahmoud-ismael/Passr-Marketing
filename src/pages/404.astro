@@ -1,0 +1,135 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/shared/Button.astro';
+---
+
+<Base 
+  title="404 - Page Not Found"
+  description="The page you're looking for doesn't exist or has been moved.">
+  
+  <main class="error-container">
+    <a href="/" class="wordmark">PASSR<span class="dot">●</span></a>
+
+    <div class="content">
+      <div class="error-code">404</div>
+      <div class="message-group">
+        <h1 class="title">PAGE NOT FOUND</h1>
+        <p class="subtitle">The page you're looking for doesn't exist or has been moved.</p>
+      </div>
+
+      <div class="actions">
+        <Button variant="primary" href="/">
+          ← RETURN TO HOME
+        </Button>
+        <Button variant="secondary" href="/pricing" class="!text-[#0A0A0A] !border-[#D8D8D8] hover:!border-[#0A0A0A] hover:bg-[#EBEBEB]">
+          VIEW PRICING
+        </Button>
+      </div>
+    </div>
+
+    <div class="footer-error">
+      Error 404 — passr.eu
+    </div>
+  </main>
+</Base>
+
+<style>
+  .error-container {
+    background: #F4F4F4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 24px;
+    position: relative;
+  }
+
+  .wordmark {
+    position: absolute;
+    top: 40px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #0A0A0A;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+  }
+
+  .dot {
+    color: #FF3B30;
+    margin-left: 1px;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .error-code {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(100px, 15vw, 160px);
+    color: #EBEBEB;
+    line-height: 1;
+    z-index: 0;
+    user-select: none;
+  }
+
+  .message-group {
+    position: relative;
+    z-index: 1;
+    margin-top: -40px;
+  }
+
+  .title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #0A0A0A;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+  }
+
+  .subtitle {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    color: #909090;
+    margin-top: 12px;
+    max-width: 360px;
+    line-height: 1.6;
+    text-transform: uppercase;
+  }
+
+  .actions {
+    margin-top: 40px;
+    display: flex;
+    gap: 12px;
+  }
+
+  @media (max-width: 640px) {
+    .actions {
+      flex-direction: column;
+      width: 100%;
+      max-width: 280px;
+    }
+  }
+
+  .footer-error {
+    position: absolute;
+    bottom: 40px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: #CCCCCC;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+</style>
