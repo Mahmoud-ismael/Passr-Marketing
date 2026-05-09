@@ -149,7 +149,15 @@ const faqs = [
               ))}
             </div>
 
-            <Button variant={plan.variant} size="lg" class="w-full" href="#waitlist">
+            <Button 
+              variant={plan.variant} 
+              size="lg" 
+              class:list={[
+                "w-full",
+                plan.variant === 'secondary' && "text-[#0A0A0A] border-[#E8E8E8] hover:border-[#0A0A0A] hover:bg-[#F4F4F4]"
+              ]} 
+              href="#waitlist"
+            >
               {plan.cta}
             </Button>
           </div>
@@ -172,7 +180,7 @@ const faqs = [
   <section class="py-32 bg-white border-t border-[#F0F0F0]">
     <div class="container mx-auto px-6 max-w-[800px]">
       <div class="mb-16">
-        <SectionLabel label="QUESTIONS & PROTOCOLS" class="mb-8" />
+        <SectionLabel label="QUESTIONS & PLATFORM" class="mb-8" />
         <h2 class="font-display font-bold text-3xl text-[#0A0A0A] tracking-tight uppercase">Frequently Asked Questions</h2>
       </div>
 
