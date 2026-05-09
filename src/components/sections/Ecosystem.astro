@@ -167,9 +167,9 @@ const stats = [
             <p class="card-desc">{node.description}</p>
             <div class="card-bottom">
               <span class="card-subdomain">{node.subdomain}</span>
-              <div class="flex items-center gap-2 shrink-0">
+              <div class="flex items-center gap-2">
                 {node.apiBadge && <span class="api-badge">API</span>}
-                <span class="role-tag" title={node.tag}>{node.tag}</span>
+                <span class="role-tag">{node.tag}</span>
               </div>
             </div>
           </div>
@@ -445,11 +445,10 @@ const stats = [
     border-top: 1px solid #F0F0F0;
     padding-top: 10px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
     margin-top: auto;
-    flex-wrap: nowrap;
-    gap: 8px;
     flex-shrink: 0;
   }
 
@@ -458,10 +457,6 @@ const stats = [
     font-size: 10px;
     color: #AAAAAA;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex: 1;
-    min-width: 0;
   }
 
   .role-tag {
@@ -474,9 +469,7 @@ const stats = [
     border: 1px solid #FFE0DE;
     padding: 2px 6px;
     white-space: nowrap;
-    flex-shrink: 0;
-    max-width: none;
-    overflow: visible;
+    align-self: flex-start;
   }
 
   .api-badge {
